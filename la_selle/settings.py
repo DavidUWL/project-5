@@ -20,8 +20,8 @@ if DEBUG:
         'https://*.127.0.0.1'
         ]
 else:
-    ALLOWED_HOSTS = ['therestaurant-ec18b29952b2.herokuapp.com']
-    CSRF_TRUSTED_ORIGINS = ['https://therestaurant-ec18b29952b2.herokuapp.com']
+    ALLOWED_HOSTS = ['la-selle-45cacae9f212.herokuapp.com']
+    CSRF_TRUSTED_ORIGINS = ['la-selle-45cacae9f212.herokuapp.com']
 
 
 # Application definition
