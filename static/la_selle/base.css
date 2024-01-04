@@ -1,0 +1,18 @@
+body {
+  background: url('/media/homepage_image.webp') no-repeat center center fixed;
+  background-size: cover;
+  height: calc(100vh - 164px);
+  /* font-family: 'Dongle', sans-serif;
+    font-size: 2em; */
+}
+
+/* search bar margin */
+@media (max-width: 992px) {
+  .searchbar {
+    margin-top: 5px;
+  }
+}
+
+.logo-font {
+  font-family: 'orbitron', sans-serif;
+}
