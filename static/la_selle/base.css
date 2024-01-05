@@ -13,6 +13,24 @@ body {
   }
 }
 
+/*  borders to separate elements in navbar */
+
+@media (min-width: 992px) {
+  .border-ls {
+    border-left: 1px solid #6c757d; 
+  }
+}
+
+@media (min-width: 992px) {
+  .border-rs {
+    border-right: 1px solid #6c757d; 
+  }
+}
+
 .logo-font {
   font-family: 'orbitron', sans-serif;
+}
+
+.header-container {
+  padding-top: 164px;
 }

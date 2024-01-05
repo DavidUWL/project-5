@@ -44,75 +44,111 @@
 </head>
 
 <body>
-    <div>
-        <nav class="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-            <div class="container-fluid">
-                <a class="navbar-brand fs-4 logo-font" href="{% url 'home' %}">La <strong>Selle</strong></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mb-lg-0 mt-md-2 align-items-center">
-                        <form class="d-flex searchbar" role="search" method="get" action="">
+    <header>
+        <div>
+            <nav class="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary"
+                data-bs-theme="light">
+                <div class="container-fluid">
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <form class="d-flex mx-auto searchbar" role="search" method="get" action="">
                             <input class="form-control" type="text" name="q" placeholder="Search"
                                 aria-label="Search the site">
                             <button class="btn btn-outline-secondary" type="submit">
                                 <div><i class="fa-solid fa-magnifying-glass"></i></div>
                             </button>
                         </form>
-                        <li class="nav-item dropdown ms-2">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                My Account
-                            </a>
-                            <ul class="dropdown-menu">
-                                {% if request.user.is_authenticated %}
-                                {% if request.user.is_superuser %}
-                                <li><a class="dropdown-item" href="#">Manage Products</a></li>
-                                {% endif %}
-                                <li><a class="dropdown-item" href="#">My profile</a></li>
-                                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
-                                {% else %}
-                                <li><a class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
-                                <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
-                                {% endif %}
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link">
-                                <div class="text-center">
-                                    <i class="fas fa-shopping-bag fa-lg"></i>
-                                </div>
-                                <p class="my-0">
-                                    {% if grand_total %}
-                                    €{{ grand_total|floatformat:2 }}
-                                    {% else %}
-                                    €0.00
+
+                        <ul class="navbar-nav mb-lg-0 mt-md-2 align-items-center">
+                            <li class="nav-item dropdown ms-2 border-ls">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Road
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Carbon</a></li>
+                                    <li><a class="dropdown-item" href="#">Polymer</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown ms-2">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Gravel
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Carbon</a></li>
+                                    <li><a class="dropdown-item" href="#">Polymer</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown ms-2">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Triathlon
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Carbon</a></li>
+                                    <li><a class="dropdown-item" href="#">Polymer</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav mb-lg-0 mt-md-2 align-items-center">
+                            <li class="nav-item dropdown ms-2 border-ls">
+                                <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    My Account
+                                </a>
+                                <ul class="dropdown-menu">
+                                    {% if request.user.is_authenticated %}
+                                    {% if request.user.is_superuser %}
+                                    <li><a class="dropdown-item" href="#">Manage Products</a></li>
                                     {% endif %}
-                                </p>
-                            </a>
-                        </li>
-                    </ul>
+                                    <li><a class="dropdown-item" href="#">My profile</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                                    {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link">
+                                    <div class="text-center">
+                                        <i class="fas fa-shopping-bag fa-lg"></i>
+                                    </div>
+                                    <p class="my-0">
+                                        {% if grand_total %}
+                                        €{{ grand_total|floatformat:2 }}
+                                        {% else %}
+                                        €0.00
+                                        {% endif %}
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="navbar-brand fs-4 logo-font" href="{% url 'home' %}">La <strong>Selle</strong></a>
                 </div>
+            </nav>
+        </div>
+        <div id="special-offers-banner" class="row text-center bg-dark text-white">
+            <div class="col">
+                <h4 class="my-1">Discounts on triathlon saddles up to {{special_offers_percent }}</h4>
             </div>
-        </nav>
-    </div>
-    <div>
-        <nav class="navbar-nav bg-secondary" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a class="nav-link" href="#">Menu1</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Menu2</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
 
+        </div>
+    </header>
 
 
 
