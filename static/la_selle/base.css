@@ -2,8 +2,10 @@ body {
   background: url('/media/homepage_image.webp') no-repeat center center fixed;
   background-size: cover;
   height: calc(100vh - 164px);
-  /* font-family: 'Dongle', sans-serif;
-    font-size: 2em; */
+}
+
+.header-container {
+  padding-top: 164px;
 }
 
 /* search bar margin */
@@ -14,7 +16,6 @@ body {
 }
 
 /*  borders to separate elements in navbar */
-
 @media (min-width: 992px) {
   .border-ls {
     border-left: 1px solid #6c757d; 
@@ -27,10 +28,13 @@ body {
   }
 }
 
+/* logo */
 .logo-font {
   font-family: 'orbitron', sans-serif;
 }
 
-.header-container {
-  padding-top: 164px;
+/* products overlay */
+.overlay {
+  position: fixed;
+  z-index: -1;
 }

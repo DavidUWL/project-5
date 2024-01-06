@@ -44,7 +44,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="container-fluid fixed-top">
         <div>
             <nav class="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary"
                 data-bs-theme="light">
@@ -138,15 +138,14 @@
                             </li>
                         </ul>
                     </div>
-                    <a class="navbar-brand fs-4 logo-font" href="{% url 'home' %}">La <strong>Selle</strong></a>
+                    <a class="navbar-brand fs-4 logo-font me-auto" href="{% url 'home' %}">La <strong>Selle</strong></a>
                 </div>
             </nav>
         </div>
-        <div id="special-offers-banner" class="row text-center bg-dark text-white">
+        <div id="special-offers-banner" class="row text-center bg-dark text-white me-auto">
             <div class="col">
                 <h4 class="">Discounts on triathlon saddles up to {{special_offers_percent }}</h4>
             </div>
-
         </div>
     </header>
 
