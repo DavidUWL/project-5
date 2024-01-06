@@ -1,11 +1,12 @@
 from django.contrib import admin
-from .models import Product, Category
+from .models import Product, Category, Subcategory
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'sku',
         'name',
         'category',
+        'subcategory',
         'price',
         'rating',
         'image',
@@ -19,8 +20,15 @@ class CategoryAdmin(admin.ModelAdmin):
 
     )
 
+class SubcategoryAdmin(admin.ModelAdmin):
+    list_display = (
+        'display_name',
+        'name',
+
+    )
 
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Subcategory, SubcategoryAdmin)
 

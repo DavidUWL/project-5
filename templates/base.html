@@ -78,8 +78,9 @@
                                     Road
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Carbon</a></li>
-                                    <li><a class="dropdown-item" href="#">Polymer</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=road">All</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=road&subcategory=carbon">Carbon</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=road&subcategory=polymer">Polymer</a></li>
                                 </ul>
                             </li>
 
@@ -89,8 +90,9 @@
                                     Gravel
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Carbon</a></li>
-                                    <li><a class="dropdown-item" href="#">Polymer</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=gravel">All</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=gravel&subcategory=carbon">Carbon</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=gravel&subcategory=polymer">Polymer</a></li>
                                 </ul>
                             </li>
 
@@ -100,8 +102,9 @@
                                     Triathlon
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Carbon</a></li>
-                                    <li><a class="dropdown-item" href="#">Polymer</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=triathlon">All</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=triathlon&subcategory=carbon">Carbon</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=triathlon&subcategory=polymer">Polymer</a></li>
                                 </ul>
                             </li>
                         </ul>
