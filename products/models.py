@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Category(models.Model): 
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     name = models.CharField(max_length=254)
     display_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -11,9 +15,11 @@ class Category(models.Model):
     def get_display_name(self):
         return self.display_name
 
+
 class Product(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
+    sku = models.CharField(max_length=254, null=True, blank=True)
     size = models.CharField(max_length=254, null=True, blank=True)
     models.CharField(max_length=254, null=True, blank=True)
     description = models.TextField()
