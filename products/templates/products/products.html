@@ -38,6 +38,20 @@
               <div class="row">
                 <div class="col">
                   <p class="lead font-weight-bold">€{{ product.price }}</p>
+                  {% if product.category %}
+                  <div>
+                    <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                      <i class="fa-solid fa-road"></i>
+                      {{product.category.display_name}}
+                    </a>
+                    {% if product.subcategory %}
+                    <a class="text-muted ms-1" href="{% url 'products' %}?subcategory={{product.subcategory.name}}">
+                      <i class="fa-solid fa-wrench"></i>
+                      {{product.subcategory.display_name}}
+                    </a>
+                    {% endif %}
+                  </div>
+                  {% endif %}
                   {% if product.rating  %}
                   <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
                   {% else %}

@@ -17,17 +17,18 @@ def all_products(request):
         
         if 'category' in request.GET:
             category = request.GET['category']
+            print(category)
             if 'subcategory' in request.GET:
                 subcategory = request.GET['subcategory']
+                print(subcategory)
                 category_query = Q(category__name__icontains=category)
                 subcategory_query = Q(subcategory__name__icontains=subcategory)
                 products = products.filter(category_query & subcategory_query)
-        else:
-            products = products.filter(category__name__icontains=category)
+            else:
+                products = products.filter(category__name__icontains=category)
 
         if 'q' in request.GET:
             query = request.GET['q']
-            print(query)
             if not query:
                 messages.error(request, "you didn't enter any text to search!")
             
