@@ -44,7 +44,7 @@
 </head>
 
 <body>
-    <header class="container-fluid fixed-top">
+    <header class="container-fluid fixed-top pe-0">
         <div>
             <nav class="navbar bg-dark border-bottom border-body navbar-expand-lg bg-body-tertiary"
                 data-bs-theme="light">
@@ -68,6 +68,10 @@
                         </form>
 
                         <ul class="navbar-nav mb-lg-0 mt-md-2 align-items-center">
+                            <li class="nav-item">
+                            <a href="{% url 'products' %}" class="nav-link">All Products</a>
+                            </li>
+
                             <li class="nav-item dropdown ms-2 border-ls">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
@@ -111,7 +115,7 @@
                                 <ul class="dropdown-menu">
                                     {% if request.user.is_authenticated %}
                                     {% if request.user.is_superuser %}
-                                    <li><a class="dropdown-item" href="#">Manage Products</a></li>
+                                    <li><a class=" dropdown-item" href="#">Manage Products</a></li>
                                     {% endif %}
                                     <li><a class="dropdown-item" href="#">My profile</a></li>
                                     <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
