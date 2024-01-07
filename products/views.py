@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from .models import Product, Category, Subcategory
+from .models import Product, Category, Subcategory, Technology
 
 # Create your views here.
 
@@ -17,15 +17,23 @@ def all_products(request):
         
         if 'category' in request.GET:
             category = request.GET['category']
-            print(category)
             if 'subcategory' in request.GET:
                 subcategory = request.GET['subcategory']
-                print(subcategory)
                 category_query = Q(category__name__icontains=category)
                 subcategory_query = Q(subcategory__name__icontains=subcategory)
                 products = products.filter(category_query & subcategory_query)
             else:
                 products = products.filter(category__name__icontains=category)
+
+        if not 'category' in request.GET and 'subcategory' in request.GET:
+            subcategory = request.GET['subcategory']
+            subcategory_query = Q(subcategory__name__icontains=subcategory)
+            products = products.filter(subcategory_query)
+
+        if 'technology' in request.GET: 
+            technology = request.GET['technology']
+            technology_query = Q(technology__name__icontains=technology)
+            products = products.filter(technology_query)
 
         if 'q' in request.GET:
             query = request.GET['q']

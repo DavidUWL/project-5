@@ -21,7 +21,7 @@
       <div class="row">
         {% for product in products %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-          <div class="card h-100 border-0">
+          <div class="card h-100 border-0 ">
             {% if product.image %}
             <a href="{% url 'product_details' product.id %}">
               <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="{{ product.name }}">
@@ -38,20 +38,26 @@
               <div class="row">
                 <div class="col">
                   <p class="lead font-weight-bold">€{{ product.price }}</p>
-                  {% if product.category %}
                   <div>
+                    {% if product.category %}
                     <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
                       <i class="fa-solid fa-road"></i>
                       {{product.category.display_name}}
                     </a>
+                    {% endif %}
                     {% if product.subcategory %}
                     <a class="text-muted ms-1" href="{% url 'products' %}?subcategory={{product.subcategory.name}}">
                       <i class="fa-solid fa-wrench"></i>
                       {{product.subcategory.display_name}}
                     </a>
                     {% endif %}
+                    {% if product.technology %}
+                    <a class="text-muted ms-1" href="{% url 'products' %}?technology={{product.technology.name}}">
+                      <i class="fa-solid fa-bars"></i>
+                      {{product.technology.display_name}}
+                    </a>
+                    {% endif %}
                   </div>
-                  {% endif %}
                   {% if product.rating  %}
                   <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
                   {% else %}

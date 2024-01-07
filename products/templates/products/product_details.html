@@ -9,34 +9,52 @@
 <div class="overlay h-100 w-100 bg-light"></div>
 <div class="product-container header-container">
   <div class="row">
-      <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-        <div class="image-container my-4">
-          {% if product.image %}
-          <a href="{{ product.image.url }}" target="blank">
-            <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="{{ product.name }}">
+    <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+      <div class="image-container my-4">
+        {% if product.image %}
+        <a href="{{ product.image.url }}" target="blank">
+          <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="{{ product.name }}">
+        </a>
+        {% else %}
+        <a href="">
+          <img src="{{ media_url }}noimage.png" class="card-img-top img-fluid" alt="{{ product.name }}">
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="product-details-container mb-5 mt-md-5">
+        <h4 class="display-4">{{ product.name }}</h4>
+        <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
+        {% if product.category %}
+        <div>
+          {% if product.category %}
+          <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+            <i class="fa-solid fa-road"></i>
+            {{product.category.display_name}}
           </a>
-          {% else %}
-          <a href="">
-            <img src="{{ media_url }}noimage.png" class="card-img-top img-fluid" alt="{{ product.name }}">
+          {% endif %}
+          {% if product.subcategory %}
+          <a class="text-muted ms-1" href="{% url 'products' %}?subcategory={{product.subcategory.name}}">
+            <i class="fa-solid fa-wrench"></i>
+            {{product.subcategory.display_name}}
+          </a>
+          {% endif %}
+          {% if product.technology %}
+          <a class="text-muted ms-1" href="{% url 'products' %}?technology={{product.technology.name}}">
+            <i class="fa-solid fa-bars"></i>
+            {{product.technology.display_name}}
           </a>
           {% endif %}
         </div>
+        {% if product.rating %}
+        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+        {% else %}
+        <small class="text-muted"></i>No Rating</small>
+        {% endif %}
+        <p class="mt-2">{{ product.description }}</p>
       </div>
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="product-details-container mb-5 mt-md-5">
-          <h4 class="display-4">{{ product.name }}</h4>
-          <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
-          {%if product.rating  %}
-          <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
-          {% else %}
-          <small class="text-muted"></i>No Rating</small>
-          {% endif %}
-          <p class="mt-2">{{ product.description }}</p>
-        </div>
-      </div>
+    </div>
   </div>
 </div>
-
-
-
 {% endblock %}
