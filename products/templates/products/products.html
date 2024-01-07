@@ -16,8 +16,36 @@
 </div>
 <div class="row me-auto">
   <div class="col">
-    <div class="product-container col-10 offset-1">
-      <div class="row mt-1 mb-2"></div>
+    <div class="product-container col-10 offset-2">
+      <div class="row mt-1 mb-2">
+        <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-contend-md-end">
+          <div class="sort-select-wrapper w-50">
+            <select  id="sort-selection" class="custom-select custom-select-sm rounded-0 border">
+              <option value="reset" {% if current_sorting == 'None_None'%}selected{% endif %}>Sort By..</option>
+              <option value="price_ascending" {% if current_sorting == 'price_asc'%}selected{% endif %}>Price (low to high)</option>
+              <option value="price_descending" {% if current_sorting == 'price_desc'%}selected{% endif %}>Price (high to low)</option>
+              <option value="rating_ascending" {% if current_sorting == 'rating_asc'%}selected{% endif %}>Rating (low to high)</option>
+              <option value="rating_descending" {% if current_sorting == 'rating_desc'%}selected{% endif %}>Rating (high to low)</option>
+              <option value="name_ascending" {% if current_sorting == 'name_asc'%}selected{% endif %}>Name (A-Z)</option>
+              <option value="name_descending" {% if current_sorting == 'name_desc'%}selected{% endif %}>name (Z-A)</option>
+              <option value="category_ascending" {% if current_sorting == 'category_asc'%}selected{% endif %}>Category (A-Z)</option>
+              <option value="category_descending" {% if current_sorting == 'category_desc'%}selected{% endif %}>Category (Z-A)</option>
+              <option value="subcategory_ascending" {% if current_sorting == 'subcategory_asc'%}selected{% endif %}>Subcategory (A-Z)</option>
+              <option value="subcategory_descending" {% if current_sorting == 'subcategory_desc'%}selected{% endif %}>Subcategory (Z-A)</option>
+              <option value="technology-ascending" {% if current_sorting == 'technology-asc'%}selected{% endif %}>Technology (A-Z)</option>
+              <option value="technology_descending" {% if current_sorting == 'technology_desc'%}selected{% endif %}>Technology (Z-A)</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 order-md-first">
+          <p class="text-muted mt-3 text center text-md-left">
+            {% if search_term or current_categories or current_sorting != 'None_None' %}
+            <span class="small"><a href="{% url 'products' %}">Products Home</a> | </span>
+            {% endif %}
+            {{products|length}} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
+          </p>
+        </div>
+      </div>
       <div class="row">
         {% for product in products %}
         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
