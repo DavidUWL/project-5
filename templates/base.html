@@ -68,7 +68,12 @@
                         </form>
 
                         <ul class="navbar-nav mb-lg-0 mt-md-2 align-items-center order-md-first">
-                            <li class="nav-item">
+
+                            <li class="nav-item border-rs mx-auto">
+                                <a href="{% url 'home' %}" class="nav-link"><strong>Home</strong></a>
+                            </li>
+
+                            <li class="nav-item ms-1">
                             <a href="{% url 'products' %}" class="nav-link">All Products</a>
                             </li>
 
@@ -130,7 +135,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link">
+                                <a class="nav-link" href="{% url 'view_cart'%}">
                                     <div class="text-center">
                                         <i class="fas fa-shopping-bag fa-lg"></i>
                                     </div>
