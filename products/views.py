@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.db.models import Q 
 from django.db.models.functions import Lower
 from .models import Product, Category, Subcategory, Technology
+# from .products import contexts
 
 # Create your views here.
 
@@ -52,6 +53,11 @@ def all_products(request):
             technology_query = Q(technology__name__icontains=technology)
             products = products.filter(technology_query)
 
+        if 'discount' in request.GET: 
+            discount = request.GET['discount']
+            discount_query = Q(discount__isnull=False)
+            products = products.filter(discount_query)
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -68,7 +74,6 @@ def all_products(request):
         'current_categories': categories,
         'current_subcategories': subcategories,
         'current_sorting': current_sorting,
-
     }
     return render(request, 'products/products.html', context)
 

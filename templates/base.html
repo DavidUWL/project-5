@@ -154,9 +154,9 @@
                 </div>
             </nav>
         </div>
-        <div id="special-offers-banner" class="row text-center bg-dark text-white me-auto">
+        <div id="discount-banner" class="row text-center bg-dark text-white me-auto">
             <div class="col">
-                <h4 class="">Discounts on triathlon saddles up to {{special_offers_percent }}</h4>
+                <a href="{% url 'products' %}?discount" class="nav-link"><h4 class="">Discounts on triathlon saddles up to {{ highest_discount }}%</h4></a>
             </div>
         </div>
     </header>
