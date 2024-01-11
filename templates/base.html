@@ -60,7 +60,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                         <form class="d-flex mx-auto searchbar" role="search" method="get" action="{% url 'products' %}">
-                            <input class="form-control" type="text" name="q" placeholder="Search"
+                            <input class="form-control text-center" type="text" name="q" placeholder="Search"
                                 aria-label="Search the site">
                             <button class="btn btn-outline-secondary" type="submit">
                                 <div><i class="fa-solid fa-magnifying-glass"></i></div>
@@ -156,7 +156,7 @@
         </div>
         <div id="discount-banner" class="row text-center bg-dark text-white me-auto">
             <div class="col">
-                <a href="{% url 'products' %}?discount" class="nav-link"><h4 class="">Discounts on triathlon saddles up to {{ highest_discount }}%</h4></a>
+                <a href="{% url 'products' %}?discount" class="nav-link"><h4 class="">Discounts on saddles up to {{ highest_discount }}%</h4></a>
             </div>
         </div>
     </header>
