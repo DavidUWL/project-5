@@ -37,8 +37,6 @@ body {
 }
 
 
-
-
 /* home-page image for mobile */
 @media (max-width: 661px) {
   body {
@@ -76,4 +74,10 @@ body {
 .discount-price {
   font-weight: 600;
   color: red;
+}
+
+/* cart */
+
+.table-bg-none {
+  --bs-table-bg: transparent !important;
 }

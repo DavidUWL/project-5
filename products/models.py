@@ -69,4 +69,4 @@ class Product(models.Model):
         discount_percentage = Decimal(self.discount) / Decimal(100)
         discounted_amount = self.price * discount_percentage
         discounted_price = self.price - discounted_amount
-        return "%.2f" % discounted_price
+        return round(discounted_price, 2)

@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from products.models import Product
+from decimal import Decimal
 
 
 def cart_contents(request):
@@ -14,9 +15,10 @@ def cart_contents(request):
         product = get_object_or_404(Product, pk=item_id)
 
         if product.discount:
-            total += quantity * product.discounted_price
+            total += quantity * product.calculate_discount_price
         else:
             total += quantity * product.price
+            
         product_count += quantity
         cart_items.append({
             'item_id': item_id,

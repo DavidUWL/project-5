@@ -24,21 +24,55 @@
       <div class="col">
         {% if cart_items %}
         <div class="table-responsive">
-          {{ cart_items }}
+          <table class="table-bg-none table table-sm table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">Product description</th>
+                <th scope="col"></th>
+                <th scope="col">Qty</th>
+                <th scope="col">Price</th>
+                <th scope="col">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in cart_items %}
+              <tr>
+                <td class="py-3 w-25">
+                  <img src="{{item.product.image.url }}" class="img-fluid">
+                </td>
+                <td class="py-2 align-top">
+                  <p class="my-0 fw-bold">{{ item.product.name }}</p>
+                </td>
+                <td class="py-2 align-top">
+                  <p class="my-0">{{ item.quantity }}</p>
+                </td>
+                {% if item.product.discount %}
+                <td class="py-2 align-top">
+                  <p class="my-0">€{{ item.product.calculate_discount_price }}</p>
+                </td>
+                {% else %}
+                <td class="py-2 align-top">
+                  <p class="my-0">€{{item.product.price }}</p>
+                </td>
+                {% endif %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          {% else %}
+          <p class="lead mb-3">You have no items in your cart.</p>
+          <a href="{% url 'home' %}" class="btn btn-lg btn-secondary mt-2 logo-font">
+            <span class>
+              <i class="fa-solid fa-caret-left"></i>
+            </span>
+            <span>
+              Go back
+            </span>
+          </a>
+          {% endif %}
         </div>
-        {% else %}
-        <p class="lead mb-3">You have no items in your cart.</p>
-        <a href="{% url 'home' %}" class="btn btn-lg btn-secondary mt-2 logo-font">
-          <span class>
-            <i class="fa-solid fa-caret-left"></i>
-          </span>
-          <span>
-            Go back
-          </span>
-        </a>
-        {% endif %}
       </div>
     </div>
   </div>
-</div>
-{% endblock %}
+  {% endblock %}
