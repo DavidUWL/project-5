@@ -57,12 +57,36 @@
                 {% endif %}
               </tr>
               {% endfor %}
+              <tr>
+                <td colspan="5" class="pt-3 text-end">
+                  <h5 class="fw-bold">
+                    Total : €{{ total|floatformat:2 }}
+                  </h5>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5" class="pt-2 text-end">
+                  <a href="{% url 'products' %}" class="btn btn-lg btn-secondary mt-2 logo-font">
+                    <span class>
+                      <i class="fa-solid fa-caret-left"></i>
+                    </span>
+                    <span>
+                      Continue Shopping
+                    </span>
+                  </a>
+                  <a href="" class="btn btn-lg btn-dark mt-2 logo-font">
+                    <span class="text-uppercase">
+                      Checkout
+                    </span>
+                  </a>
+                </td>
+              </tr>
             </tbody>
           </table>
 
           {% else %}
           <p class="lead mb-3">You have no items in your cart.</p>
-          <a href="{% url 'home' %}" class="btn btn-lg btn-secondary mt-2 logo-font">
+          <a href="{% url 'products' %}" class="btn btn-lg btn-secondary mt-2 logo-font">
             <span class>
               <i class="fa-solid fa-caret-left"></i>
             </span>
