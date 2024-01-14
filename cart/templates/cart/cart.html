@@ -46,7 +46,7 @@
                   <p class="my-0">{{ item.product.size }}</p>
                 </td>
                 <td class="py-2 align-top">
-                  <form class="update-form" method="POST">
+                  <form class="form update-form" method="POST" action="{% url 'adjust_cart' item.item_id %}">
                     {% csrf_token %}
                     <div class="form-group me-2">
                       <div class="input-group mb-3 w-100">
@@ -69,107 +69,105 @@
                           </button>
                         </div>
                         {% if item.product.size %}
-                        <input type="hidden" type="product_size" value="{{ item.size }}">
+                        <input type="hidden" name="product_size" value="{{ item.size }}">
                         {% endif %}
                       </div>
-                  </form>
-                  <div class="row">
-                    <div class="col w-100">
-                      <a class="text-decoration-none update-link text-success me-5">update</a>
-                      <a class="text-decoration-none remove-item text-danger my-0" id="remove_{{item.item_id }}"
-                        data-size="{{ item.size }}">remove</a>
                     </div>
-                  </div>
+                  </form>
+                  <a class="text-decoration-none update-link text-success me-5">update</a>
+                  <a class="text-decoration-none remove-item text-danger my-0" data-item_id="remove_{{item.item_id }}"
+                    data-size="{{ item.size }}">remove</a>
+        
+        </td>
+        {% if item.product.discount %}
+        <td class="py-2 align-top">
+          <p class="my-0">€{{ item.product.calculate_discount_price }}</p>
+        </td>
+        {% else %}
+        <td class="py-2 align-top">
+          <p class="my-0">€{{ item.product.price }}</p>
+        </td>
+        {% endif %}
+        {% if item.product.discount %}
+        <td class="py-2 align-top">
+          <p class="my-0">€{{ item.product.calculate_discount_price }}</p>
+        </td>
+        {% else %}
+        <td class="py-2 align-top">
+          <p class="my-0">€{{ item.product.price }}</p>
+        </td>
+        {% endif %}
 
-                </td>
-                {% if item.product.discount %}
-                <td class="py-2 align-top">
-                  <p class="my-0">€{{ item.product.calculate_discount_price }}</p>
-                </td>
-                {% else %}
-                <td class="py-2 align-top">
-                  <p class="my-0">€{{ item.product.price }}</p>
-                </td>
-                {% endif %}
-                {% if item.product.discount %}
-                <td class="py-2 align-top">
-                  <p class="my-0">€{{ item.product.calculate_discount_price }}</p>
-                </td>
-                {% else %}
-                <td class="py-2 align-top">
-                  <p class="my-0">€{{ item.product.price }}</p>
-                </td>
-                {% endif %}
-                
-              </tr>
-              {% endfor %}
-              <tr>
-                <td colspan="5" class="pt-3 text-end">
-                  <h5 class="fw-bold">
-                    Total : €{{ total|floatformat:2 }}
-                  </h5>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="5" class="pt-2 text-end">
-                  <a href="{% url 'products' %}" class="btn btn-lg btn-secondary mt-2 logo-font">
-                    <span class>
-                      <i class="fa-solid fa-caret-left"></i>
-                    </span>
-                    <span>
-                      Continue Shopping
-                    </span>
-                  </a>
-                  <a href="" class="btn btn-lg btn-dark mt-2 logo-font">
-                    <span class="text-uppercase">
-                      Checkout
-                    </span>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td colspan="5" class="pt-3 text-end">
+            <h5 class="fw-bold">
+              Total : €{{ total|floatformat:2 }}
+            </h5>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="5" class="pt-2 text-end">
+            <a href="{% url 'products' %}" class="btn btn-lg btn-secondary mt-2 logo-font">
+              <span class>
+                <i class="fa-solid fa-caret-left"></i>
+              </span>
+              <span>
+                Continue Shopping
+              </span>
+            </a>
+            <a href="" class="btn btn-lg btn-dark mt-2 logo-font">
+              <span class="text-uppercase">
+                Checkout
+              </span>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+        </table>
 
-          {% else %}
-          <p class="lead mb-3">You have no items in your cart.</p>
-          <a href="{% url 'products' %}" class="btn btn-lg btn-secondary mt-2 logo-font">
-            <span class>
-              <i class="fa-solid fa-caret-left"></i>
-            </span>
-            <span>
-              Go back
-            </span>
-          </a>
-          {% endif %}
-        </div>
+        {% else %}
+        <p class="lead mb-3">You have no items in your cart.</p>
+        <a href="{% url 'products' %}" class="btn btn-lg btn-secondary mt-2 logo-font">
+          <span class>
+            <i class="fa-solid fa-caret-left"></i>
+          </span>
+          <span>
+            Go back
+          </span>
+        </a>
+        {% endif %}
       </div>
     </div>
   </div>
-  {% endblock %}
+</div>
+{% endblock %}
 
-  {% block postloadjs %}
-  {{ block.super }}
-  {% include 'products/includes/quantity_input_script.html' %}
-  <script type="text/javascript">
-    $('.update-link').click(function (e) {
-      let form = $(this).prev('.update-form');
-      form.submit();
-    })
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products/includes/quantity_input_script.html' %}
+<script type="text/javascript">
+  $('.update-link').click(function (e) {
+    let form = $(this).prev('.update-form');
+    form.submit();
+  })
 
-    $('.remove-item').click(function (e) {
-      let csrfToken = "{{ csrf_token }}";
-      let itemId = $(this).attr('id').split('remove_')[1];
-      let size = $(this).data('size');
-      let url = `/cart/remove/${itemId}`;
-      let data = {
-        'csrfmiddlewaretoken': csrfToken,
-        'size': size
-      }
+  $('.remove-item').click(function (e) {
+    let csrfToken = "{{ csrf_token }}";
+    let itemId = $(this).attr('id').split('remove_')[1];
+    let size = $(this).data('size');
+    let url = `/cart/remove/${itemId}`;
+    let data = {
+      'csrfmiddlewaretoken': csrfToken,
+      'size': size
+    }
 
-      $.post(url, data).DONE(function () {
+    $.post(url, data)
+      .DONE(function () {
         location.reload();
-      })
-    })
-  </script>
+      });
+  })
+</script>
 
-  {% endblock %}
+{% endblock %}
