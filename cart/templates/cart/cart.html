@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load cart_tools %}
 {% block page_header %}
 <!-- <div class="container header-container">
   <div class="row">
@@ -75,99 +75,106 @@
                     </div>
                   </form>
                   <a class="text-decoration-none update-link text-success me-5">update</a>
-                  <a class="text-decoration-none remove-item text-danger my-0" data-item_id="remove_{{item.item_id }}"
-                    data-size="{{ item.size }}">remove</a>
-        
-        </td>
-        {% if item.product.discount %}
-        <td class="py-2 align-top">
-          <p class="my-0">€{{ item.product.calculate_discount_price }}</p>
-        </td>
-        {% else %}
-        <td class="py-2 align-top">
-          <p class="my-0">€{{ item.product.price }}</p>
-        </td>
-        {% endif %}
-        {% if item.product.discount %}
-        <td class="py-2 align-top">
-          <p class="my-0">€{{ item.product.calculate_discount_price }}</p>
-        </td>
-        {% else %}
-        <td class="py-2 align-top">
-          <p class="my-0">€{{ item.product.price }}</p>
-        </td>
-        {% endif %}
+                  <a class="text-decoration-none remove-item text-danger my-0" id="remove_{{ item.item_id }}"
+                    data-product_size="{{ item.size }}">remove</a>
 
-        </tr>
-        {% endfor %}
-        <tr>
-          <td colspan="5" class="pt-3 text-end">
-            <h5 class="fw-bold">
-              Total : €{{ total|floatformat:2 }}
-            </h5>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="5" class="pt-2 text-end">
-            <a href="{% url 'products' %}" class="btn btn-lg btn-secondary mt-2 logo-font">
-              <span class>
-                <i class="fa-solid fa-caret-left"></i>
-              </span>
-              <span>
-                Continue Shopping
-              </span>
-            </a>
-            <a href="" class="btn btn-lg btn-dark mt-2 logo-font">
-              <span class="text-uppercase">
-                Checkout
-              </span>
-            </a>
-          </td>
-        </tr>
-        </tbody>
-        </table>
+                </td>
+                {% if item.product.discount %}
+                <td class="py-2 align-top">
+                  <p class="my-0">€{{ item.product.calculate_discount_price }}</p>
+                </td>
+                {% else %}
+                <td class="py-2 align-top">
+                  <p class="my-0">€{{ item.product.price }}</p>
+                </td>
+                {% endif %}
+                {% if item.product.discount %}
+                <td class="py-2 align-top">
+                  <p class="my-0">€{{ item.product.calculate_discount_price }}</p>
+                </td>
+                {% else %}
+                <td class="py-2 align-top">
+                  {% if item.product.discount %}
+                  <p class="my-0">€{{ item.product.calculate_discount_price | calculate_subtotal:item.quantity }}</p>
+                  {% else %}
+                  <p class="my-0">€{{ item.product.price | calculate_subtotal:item.quantity }}</p>
+                  {% endif %}
+                </td>
+                {% endif %}
 
-        {% else %}
-        <p class="lead mb-3">You have no items in your cart.</p>
-        <a href="{% url 'products' %}" class="btn btn-lg btn-secondary mt-2 logo-font">
-          <span class>
-            <i class="fa-solid fa-caret-left"></i>
-          </span>
-          <span>
-            Go back
-          </span>
-        </a>
-        {% endif %}
+              </tr>
+              {% endfor %}
+              <tr>
+                <td colspan="5" class="pt-3 text-end">
+                  <h5 class="fw-bold">
+                    Total : €{{ total|floatformat:2 }}
+                  </h5>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="5" class="pt-2 text-end">
+                  <a href="{% url 'products' %}" class="btn btn-lg btn-secondary mt-2 logo-font">
+                    <span class>
+                      <i class="fa-solid fa-caret-left"></i>
+                    </span>
+                    <span>
+                      Continue Shopping
+                    </span>
+                  </a>
+                  <a href="" class="btn btn-lg btn-dark mt-2 logo-font">
+                    <span class="text-uppercase">
+                      Checkout
+                    </span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          {% else %}
+          <p class="lead mb-3">You have no items in your cart.</p>
+          <a href="{% url 'products' %}" class="btn btn-lg btn-secondary mt-2 logo-font">
+            <span class>
+              <i class="fa-solid fa-caret-left"></i>
+            </span>
+            <span>
+              Go back
+            </span>
+          </a>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
-</div>
-{% endblock %}
+  {% endblock %}
 
-{% block postloadjs %}
-{{ block.super }}
-{% include 'products/includes/quantity_input_script.html' %}
-<script type="text/javascript">
-  $('.update-link').click(function (e) {
-    let form = $(this).prev('.update-form');
-    form.submit();
-  })
+  {% block postloadjs %}
+  {{ block.super }}
+  {% include 'products/includes/quantity_input_script.html' %}
+  <script type="text/javascript">
+    $('.update-link').click(function (e) {
+      let form = $(this).prev('.update-form');
+      form.submit();
+    })
 
-  $('.remove-item').click(function (e) {
-    let csrfToken = "{{ csrf_token }}";
-    let itemId = $(this).attr('id').split('remove_')[1];
-    let size = $(this).data('size');
-    let url = `/cart/remove/${itemId}`;
-    let data = {
-      'csrfmiddlewaretoken': csrfToken,
-      'size': size
-    }
+    $('.remove-item').click(function (e) {
+      let csrfToken = "{{ csrf_token }}";
+      let itemId = $(this).attr('id');
+      console.log(itemId);
+      itemId = $(this).attr('id').split('remove_')[1];
+      
+      let size = $(this).data('product_size');
+      let url = `/cart/remove/${itemId}/`;
+      let data = {
+        'csrfmiddlewaretoken': csrfToken,
+        'product_size': size
+      };
 
-    $.post(url, data)
-      .DONE(function () {
-        location.reload();
-      });
-  })
-</script>
+      $.post(url, data)
+        .done(function () {
+          location.reload();
+        });
+    })
+  </script>
 
-{% endblock %}
+  {% endblock %}
