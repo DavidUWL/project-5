@@ -19,6 +19,7 @@
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     <link rel="stylesheet" href="{% static 'la_selle/base.css' %}">
     {% endblock %}
 
@@ -29,10 +30,10 @@
     {% block corejs %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://kit.fontawesome.com/ce66787713.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-    <script src="https://kit.fontawesome.com/ce66787713.js" crossorigin="anonymous"></script>
     {% endblock %}
 
     {% block extra_js %}
@@ -74,7 +75,7 @@
                             </li>
 
                             <li class="nav-item ms-1">
-                            <a href="{% url 'products' %}" class="nav-link">All Products</a>
+                                <a href="{% url 'products' %}" class="nav-link">All Products</a>
                             </li>
 
                             <li class="nav-item dropdown ms-2 border-ls">
@@ -84,8 +85,11 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{% url 'products' %}?category=road">All</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=road&subcategory=carbon">Carbon</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=road&subcategory=polymer">Polymer</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{% url 'products' %}?category=road&subcategory=carbon">Carbon</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{% url 'products' %}?category=road&subcategory=polymer">Polymer</a>
+                                    </li>
                                 </ul>
                             </li>
 
@@ -95,9 +99,14 @@
                                     Gravel
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=gravel">All</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=gravel&subcategory=carbon">Carbon</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=gravel&subcategory=polymer">Polymer</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=gravel">All</a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                            href="{% url 'products' %}?category=gravel&subcategory=carbon">Carbon</a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                            href="{% url 'products' %}?category=gravel&subcategory=polymer">Polymer</a>
+                                    </li>
                                 </ul>
                             </li>
 
@@ -107,9 +116,14 @@
                                     Triathlon
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=triathlon">All</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=triathlon&subcategory=carbon">Carbon</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=triathlon&subcategory=polymer">Polymer</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'products' %}?category=triathlon">All</a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                            href="{% url 'products' %}?category=triathlon&subcategory=carbon">Carbon</a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                            href="{% url 'products' %}?category=triathlon&subcategory=polymer">Polymer</a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -135,7 +149,8 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="{% if grand_total%} fw-bold text-success {% endif %} nav-link" href="{% url 'view_cart'%}">
+                                <a class="{% if grand_total%} fw-bold text-success {% endif %} nav-link"
+                                    href="{% url 'view_cart'%}">
                                     <div class="text-center">
                                         <i class="fas fa-shopping-bag fa-lg"></i>
                                     </div>
@@ -156,15 +171,22 @@
         </div>
         <div id="discount-banner" class="row text-center bg-dark text-white me-auto">
             <div class="col">
-                <a href="{% url 'products' %}?discount" class="nav-link"><h4 class="">Discounts on saddles up to {{ highest_discount }}%</h4></a>
+                <a href="{% url 'products' %}?discount" class="nav-link">
+                    <h4 class="">Discounts on saddles up to {{ highest_discount }}%</h4>
+                </a>
             </div>
         </div>
     </header>
 
 
-
     {% if messages %}
-    <div class="message-container"></div>
+    <div class="message-container">
+        <div class="custom-toast">
+            {% for message in messages %}
+            {% include 'includes/toasts/toast_success.html' %}
+            {% endfor %}
+        </div>
+    </div>
     {% endif %}
 
     {% block page_header %}
@@ -174,6 +196,30 @@
     {% endblock %}
 
     {% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        let toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        let toastList = toastElList.map(function (toastEl) {
+            let option = {
+                animation: true,
+                autohide: true,
+                delay: 3000,
+            }
+            let bsToast = new bootstrap.Toast(toastEl, option)
+            bsToast.show();
+        })
+    </script>
+    {% if messages %}
+    <script type="text/javascript">
+        
+        let currentTime = new Date()
+        let timestamp = currentTime.toLocaleTimeString()
+
+        console.log(currentTime)
+        document.getElementById('timestamp').innerHTML = timestamp
+    </script>
+    {% endif %}
+
     {% endblock %}
 
 </body>

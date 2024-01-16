@@ -3,9 +3,7 @@ from django.contrib import messages
 from django.db.models import Q 
 from django.db.models.functions import Lower
 from .models import Product, Category, Subcategory, Technology
-# from .products import contexts
 
-# Create your views here.
 
 def all_products(request):
     """ Returns all products regardless of query or sort """
@@ -79,8 +77,7 @@ def all_products(request):
 
 
 def product_details(request, product_id):
-    """ Returns single product for product details page """ 
-
+    """ Returns single product for product details page """
     product = get_object_or_404(Product, pk=product_id)
     context = {
         'product': product,

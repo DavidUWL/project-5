@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.contrib import messages
 from decimal import Decimal
+from products.models import Product
 
 
 def view_cart(request):
@@ -7,7 +9,7 @@ def view_cart(request):
 
 
 def add_to_cart(request, item_id):
-
+    product = Product.objects.get(pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
 
@@ -20,24 +22,29 @@ def add_to_cart(request, item_id):
     if size:
         if item_id in list(cart.keys()):
             if size in cart[item_id]['items_by_size'].keys():
+                messages.success(request, f'{product.name} added to your cart.')
                 cart[item_id]['items_by_size'][size] += quantity
+
             else:
                 cart[item_id]['items_by_size'] = quantity
+                messages.success(
+                    request, f'{product.name} added to your cart.')
         else:
             cart[item_id] = {'items_by_size': {size: quantity}}
+            messages.success(request, f'{product.name} added to your cart.')
     else:
         if item_id in list(cart.keys()):
             cart[item_id] += quantity
+            messages.success(request, f'{product.name} added to your cart.')
         else:
             cart[item_id] = quantity
+            messages.success(request, f'{product.name} added to your cart.')
 
     request.session['cart'] = cart
-    print(request.session['cart'])
     return redirect(redirect_url)
 
 
 def adjust_cart(request, item_id):
-
     quantity = int(request.POST.get('quantity'))
 
     size = None

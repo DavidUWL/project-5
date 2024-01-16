@@ -80,8 +80,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'la_selle.wsgi.application'
 
 
-
-
 if DEBUG:
     if TESTING:
         DATABASES = {
@@ -98,6 +96,8 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
 AUTHENTICATION_BACKENDS = [
