@@ -1,8 +1,21 @@
-<div class="toast align-items-center text-bg-info border-0" role="alert" aria-live="assertive" aria-atomic="true">
-  <div class="d-flex">
-    <div class="toast-body">
-        {{ message }}
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" class="toast text-white bg-danger border-0" role="alert" aria-live="assertive"
+    aria-atomic="true">
+    <div class="toast-header">
+      <i class="fa-solid fa-x rounded me-2"></i>
+      <strong class="me-auto">Failed</strong>
+      <span class="my-auto">
+        <i class="fa-solid fa-clock"></i>
+        <small id="timestamp"></small>
+      </span>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    <div class="toast-body">
+      <div class="row">
+        <div class="col">
+          <strong>{{ message }}</strong>
+          <hr class="mt-2 mb-2">
+        </div>
+    </div>
   </div>
 </div>

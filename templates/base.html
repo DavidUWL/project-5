@@ -3,6 +3,13 @@
 <html lang="en">
 
 <head>
+    {% block favicon%}
+    <link rel="apple-touch-icon" sizes="180x180" href="/media/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/media/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/media/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/media/favicon/site.webmanifest">
+    {% endblock %}
+
     {% block meta %}
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
@@ -150,7 +157,8 @@
 
                             <li class="nav-item">
                                 <a class="{% if grand_total%} fw-bold text-success {% endif %} nav-link"
-                                    href="{% url 'view_cart'%}">
+                                    data-bs-toggle="offcanvas" href="#offcanvas" role="button"
+                                    aria-controls="offcanvasExample">
                                     <div class="text-center">
                                         <i class="fas fa-shopping-bag fa-lg"></i>
                                     </div>
@@ -178,12 +186,67 @@
         </div>
     </header>
 
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvaslabel">
+        <div class="offcanvas-header">
+            <h5 class="cart-offcanvas-title" id="cart-offcanvas">Cart : ({{product_count}}) Items</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            {% if grand_total %}
+            {%for item in cart_items %}
+            <hr class="w-100">
+            <div class="row">
+                <div class="col-4 my-2">
+                    <img class="col w-100 rounded-1" src="{{ item.product.image.url }}" alt="product_image">
+                </div>
+                <div class="col-8">
+                    <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                    <p class="my-0">size:{% if item.product.size %} {{ item.product.size }} {% else %} N/A {% endif %}
+                    </p>
+                    <p class="my-0"><small>{{ item.quantity }}</small></p>
+
+                    {% if item.product.discount %}
+                    <p class="my-0 text-decoration-line-through">
+                        €{{ item.product.price }}
+                    </p>
+                    <p class="my-0 discount-price">
+                        €{{ item.product.calculate_discount_price }}
+                    </p>
+                    {% else %}
+                    <p class="my-0">€{{ item.product.price }}</p>
+                    {% endif %}
+                </div> 
+            </div>
+            {% endfor %}
+            {% endif %}
+            <div class="row w-100">
+                <div class="col-12 d-flex justify-content-end">
+                    <a href="{% url 'view_cart' %}" class="btn btn-dark rounded-0 align-items-center">
+                        <span><small><i class="fa-solid fa-basket-shopping"></i></small></span> Checkout
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 
     {% if messages %}
     <div class="message-container">
         <div class="custom-toast">
             {% for message in messages %}
+            {% with message.level as level %}
+            {% if level == 40 %}
+            {% include 'includes/toasts/toast_error.html' %}
+            {% elif level == 30 %}
+            {% include 'includes/toasts/toast_warning.html' %}
+            {% elif level == 25 %}
             {% include 'includes/toasts/toast_success.html' %}
+            {% else %}
+            {% include 'includes/toasts/toast_info.html' %}
+            {% endif %}
+            {% endwith %}
             {% endfor %}
         </div>
     </div>
@@ -197,13 +260,14 @@
 
     {% block postloadjs %}
     {{ block.super }}
+    <!-- below script for toasts credited to Richard Ash from the CI slack channel -->
     <script type="text/javascript">
         let toastElList = [].slice.call(document.querySelectorAll('.toast'))
         let toastList = toastElList.map(function (toastEl) {
             let option = {
                 animation: true,
                 autohide: true,
-                delay: 3000,
+                delay: 5000,
             }
             let bsToast = new bootstrap.Toast(toastEl, option)
             bsToast.show();
@@ -211,7 +275,6 @@
     </script>
     {% if messages %}
     <script type="text/javascript">
-        
         let currentTime = new Date()
         let timestamp = currentTime.toLocaleTimeString()
 
