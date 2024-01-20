@@ -191,6 +191,15 @@
             <h5 class="cart-offcanvas-title" id="cart-offcanvas">Cart : ({{product_count}}) Items</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
+        <div class="row w-100 mt-2">
+            <div class="col-12 d-flex justify-content-end">
+                <p class="lead fw-bold mx-auto">total : €{{ grand_total }}</p>
+                <a href="{% url 'view_cart' %}" class="btn btn-dark rounded-0 align-items-center">
+                    <span><small><i class="fa-solid fa-basket-shopping"></i></small></span>
+                    Checkout
+                </a>
+            </div>
+        </div>
         <div class="offcanvas-body">
             {% if grand_total %}
             {%for item in cart_items %}
@@ -219,13 +228,7 @@
             </div>
             {% endfor %}
             {% endif %}
-            <div class="row w-100">
-                <div class="col-12 d-flex justify-content-end">
-                    <a href="{% url 'view_cart' %}" class="btn btn-dark rounded-0 align-items-center">
-                        <span><small><i class="fa-solid fa-basket-shopping"></i></small></span> Checkout
-                    </a>
-                </div>
-            </div>
+
 
         </div>
     </div>
