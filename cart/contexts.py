@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from products.models import Product
+from django.conf import settings
 from decimal import Decimal
 
 
@@ -43,11 +44,13 @@ def cart_contents(request):
                     'size': size,
                 })
 
-    grand_total = total
+    delivery = Decimal(settings.STANDARD_DELIVERY_CHARGE)
+    grand_total = total + delivery
 
     context = {
         'cart_items': cart_items,
         'total': total,
+        'delivery': delivery,
         'product_count': product_count,
         'grand_total': grand_total,
     }

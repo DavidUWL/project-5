@@ -108,6 +108,7 @@
               {% endfor %}
               <tr>
                 <td colspan="5" class="pt-3 text-end">
+                  <p class="lead">delivery fee : €{{ delivery|floatformat:2 }}</p>
                   <h5 class="fw-bold">
                     Total : €{{ total|floatformat:2 }}
                   </h5>
@@ -123,7 +124,7 @@
                       Continue Shopping
                     </span>
                   </a>
-                  <a href="" class="btn btn-lg btn-dark mt-2 logo-font">
+                  <a href="{% url 'checkout' %}" class="btn btn-lg btn-dark mt-2 logo-font">
                     <span class="text-uppercase">
                       Checkout
                     </span>
