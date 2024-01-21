@@ -45,7 +45,8 @@ def cart_contents(request):
                 })
 
     delivery = Decimal(settings.STANDARD_DELIVERY_CHARGE)
-    grand_total = total + delivery
+    grand_total = round(total + delivery, 2)
+
 
     context = {
         'cart_items': cart_items,
