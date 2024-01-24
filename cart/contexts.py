@@ -11,7 +11,7 @@ def cart_contents(request):
     product_count = 0
     grand_total = 0
     cart = request.session.get('cart', {})
-
+    
     for item_id, item_data in cart.items():
         if isinstance(item_data, int):
             product = get_object_or_404(Product, pk=item_id)

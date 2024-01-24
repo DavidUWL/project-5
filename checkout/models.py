@@ -1,5 +1,5 @@
 import uuid
-
+from decimal import Decimal
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
@@ -35,9 +35,10 @@ class Purchase(models.Model):
         super().save(*args, **kwargs)
 
     def update_total(self):
-        self.order_total = self.lineitems.aggregate(sum('lineitem_total'))[
-            'lineitem_total_sum']
-        self.grand_total = self.order_total + settings.STANDARD_DELIVERY_CHARGE
+        self.delivery_cost = Decimal(settings.STANDARD_DELIVERY_CHARGE)
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))[
+            'lineitem_total__sum'] or 0
+        self.grand_total = Decimal(self.order_total) + Decimal(settings.STANDARD_DELIVERY_CHARGE)
         self.save()
 
     def __str__(self):
@@ -49,7 +50,7 @@ class OrderLineItem(models.Model):
                               on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(
         Product, null=False, blank=False, on_delete=models.CASCADE)
-    product_size = models.CharField(max_length=2, null=True, blank=True)
+    product_size = models.CharField(max_length=10, null=True, blank=True)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
@@ -62,4 +63,4 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'SKU {self.product_sku} on order {self.order.order_number}'
+        return f'SKU {self.product.sku} on order {self.order.order_number}'
