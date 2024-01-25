@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404 # NOQA
-from django.contrib import messages # NOQA
-from django.conf import settings # NOQA
-import stripe # NOQA
+from django.shortcuts import render, redirect, reverse, get_object_or_404  # NOQA
+from django.contrib import messages  # NOQA
+from django.conf import settings  # NOQA
+import stripe  # NOQA
 from cart.contexts import cart_contents
 from .forms import PurchaseForm
 
@@ -30,7 +30,7 @@ def view_checkout(request):
 
         purchase_form = PurchaseForm(form_data)
 
-        if purchase_form.is_valid(): # NOQA
+        if purchase_form.is_valid():  # NOQA
             purchase = purchase_form.save(commit=False)
             purchase.save()
             for item_id, item_data in cart.items():
@@ -55,15 +55,16 @@ def view_checkout(request):
                 except Product.DoesNotExist:
                     messages.error(request, (
                         "It looks like that item isn't in our database, please try again."
-                        )
+                    )
                     )
                     purchase.delete()
                     return redirect(reverse('view_cart'))
 
-            request.session['save_info']= 'save-info' in request.POST
+            request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success', args=[purchase.order_number]))
         else:
-            messages.error(request,  "We can't process your form, have a look and try again.")
+            messages.error(
+                request,  "We can't process your form, have a look and try again.")
 
     else:
         cart = request.session.get('cart', {})
@@ -93,13 +94,12 @@ def view_checkout(request):
     return render(request, 'checkout/checkout.html', context)
 
 
-
 def checkout_success(request, order_number):
     save_info = request.session.get('save-info')
     order = get_object_or_404(Purchase, order_number=order_number)
     messages.success(request,
-        f'Your order has been completed. Your order number is #{order_number}'
-        )
+        f'Your order has been completed. Your order number is: #{order_number}'
+    )
     if 'cart' in request.session:
         del request.session['cart']
     context = {

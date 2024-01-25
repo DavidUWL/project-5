@@ -38,7 +38,9 @@ class Purchase(models.Model):
         self.delivery_cost = Decimal(settings.STANDARD_DELIVERY_CHARGE)
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))[
             'lineitem_total__sum'] or 0
-        self.grand_total = Decimal(self.order_total) + Decimal(settings.STANDARD_DELIVERY_CHARGE)
+        self.grand_total = Decimal(self.order_total) + Decimal(
+            settings.STANDARD_DELIVERY_CHARGE
+            )
         self.save()
 
     def __str__(self):
@@ -46,14 +48,24 @@ class Purchase(models.Model):
 
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Purchase, null=False, blank=False,
-                              on_delete=models.CASCADE, related_name='lineitems')
+    order = models.ForeignKey(
+        Purchase,
+        null=False,
+        blank=False,
+        on_delete=models.CASCADE,
+        related_name='lineitems'
+        )
     product = models.ForeignKey(
         Product, null=False, blank=False, on_delete=models.CASCADE)
     product_size = models.CharField(max_length=10, null=True, blank=True)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
-        max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+        max_digits=6,
+        decimal_places=2,
+        null=False,
+        blank=False,
+        editable=False
+        )
 
     def save(self, *args, **kwargs):
         if self.product.discount:

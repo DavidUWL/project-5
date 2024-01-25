@@ -19,19 +19,98 @@
 <div class="overlay h-100 w-100 bg-light">
 </div>
 <div class="container header-container">
-    <div class="row">
-        <div class="col">
-            <h2 class="logo-font mb-4 text-center">Purchase Completed!</h2>
-            <hr>
-            <p class="lead">Review your order below:</p>
-        </div>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                
-            </div>
-        </div>
+  <div class="row">
+    <div class="col">
+      <h2 class="logo-font mb-4 text-center">Purchase Completed!</h2>
+      <hr>
+      <p class="lead">Review your order below:</p>
     </div>
+    <div class="row">
+      <div class="col-12 col-lg-7">
+        <div class="purchase-completed-table">
+          <table class="table table-bg-none border table-hover">
+            <thead class="bg-secondary logo-font">
+              <th scope="col" colspan="3" class="text-center">Order Details</th>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Order #:</th>
+                <th scope="row" colspan="2">{{ order.order_number }}</th>
+              </tr>
+              <tr>
+                <th scope="row">Order Date:</th>
+                <th scope="row" colspan="2">{{ order.date }}</th>
+              </tr>
+              <tr>
+                <th scope="row" colspan="3">Items:</th>
+              </tr>
+              {% for item in order.lineitems.all %}
+              <tr>
+                <th scope="row">{{ item.product.name }}</th>
+                <th scope="row">{% if item.product.size %}{{ item.product.size }}{% else %}Size N/A{% endif %}</th>
+                <th scope="row">{{ item.quantity }} X €{{ item.product.price }}</th>
+              </tr>
+              {% endfor %}
+              <tr>
+                <th scope="row">Order total:</th>
+                <th scope="row" colspan="2" class="text-center">€{{ order.order_total }}</th>
+              </tr>
+              <tr>
+                <th scope="row">Delivery Cost:</th>
+                <th scope="row" colspan="2" class="text-center">€{{ order.delivery_cost }}</th>
+              </tr>
+              <tr>
+                <th scope="row">Grand Total:</th>
+                <th scope="row" colspan="2" class="text-center">€{{ order.grand_total }}</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-12 col-lg-5">
+        <div class="purchase-completed-table">
+          <table class="table table-bg-none border table-hover">
+            <thead class="bg-secondary logo-font">
+              <th scope="col" colspan="3" class="text-center">Billing & Delivery</th>
+            </thead>
+            <tbody>
+              <th scope="row" class="text-center">{{ order.full_name }}</th>
+              <tr>
+                <th scope="row" class="text-center">{{ order.email }}</th>
+              </tr>
+              <tr>
+                <th scope="row" class="text-center">{{ order.phone_number }}</th>
+              </tr>
+              <tr>
+                <th scope="row" class="text-center">{{ order.country }}</th>
+              </tr>
+              <tr>
+              {% if order.county %}
+                <th scope="row" class="text-center">{{ order.county }}</th>
+              </tr>
+              {% endif %}
+              <tr>
+                <th scope="row" class="text-center">{{ order.town_or_city }}</th>
+              </tr>
+              <tr>
+                {% if order.postcode %}
+                <th scope="row" class="text-center">{{ order.postcode }}</th>
+                {% endif %}
+              </tr>
+              <tr>
+                <th scope="row" class="text-center">{{ order.street_address1 }}</th>
+              </tr>
+              {% if order.street_address2 %}
+              <tr>
+                <th scope="row" class="text-center">{{ order.street_address2 }}</th>
+              </tr>
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 {% endblock %}
-
-

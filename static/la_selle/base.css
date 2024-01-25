@@ -39,15 +39,12 @@ body {
   }
 }
 
-
 /* home-page image for mobile */
 @media (max-width: 661px) {
   body {
     background: url('/media/homepage_image_mobile.jpg') no-repeat center center fixed;
   }
 }
-
-
 
 
 /* logo */
@@ -84,7 +81,6 @@ body {
 }
 
 /* cart */
-
 
 .table-bg-none {
   --bs-table-bg: transparent !important;
