@@ -14,9 +14,9 @@ DEBUG = True
 TESTING = False
 
 if DEBUG:
-    ALLOWED_HOSTS = ['8000-daviduwl-project5-039q24nq3wf.ws-eu107.gitpod.io']
+    ALLOWED_HOSTS = ['8000-daviduwl-project5-jusbyi2qwcf.ws-eu107.gitpod.io']
     CSRF_TRUSTED_ORIGINS = [
-        'https://8000-daviduwl-project5-039q24nq3wf.ws-eu107.gitpod.io',
+        'https://8000-daviduwl-project5-jusbyi2qwcf.ws-eu107.gitpod.io',
         'https://*.127.0.0.1'
         ]
 else:
