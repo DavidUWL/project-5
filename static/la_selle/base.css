@@ -85,3 +85,17 @@ body {
 .table-bg-none {
   --bs-table-bg: transparent !important;
 }
+
+/* allauth authentication pages */
+
+.allauth-content-block label:not([for='id_remember']) {
+  display: none;
+}
+
+.allauth-content-block input {
+  margin-top: 10px;
+}
+
+#id_remember {
+  margin-top: 5px;
+}

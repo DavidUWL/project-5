@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'crispy_forms',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -176,3 +177,4 @@ STANDARD_DELIVERY_CHARGE = 9.99
 STRIPE_CURRENCY = 'EUR'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')

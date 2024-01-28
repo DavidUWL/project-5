@@ -1,13 +1,29 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404  # NOQA
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse # NOQA
 from django.contrib import messages  # NOQA
 from django.conf import settings  # NOQA
+from django.views.decorators.http import require_POST
 import stripe  # NOQA
+import json
 from cart.contexts import cart_contents
 from .forms import PurchaseForm
 
 from products.models import Product
 from .models import OrderLineItem, Purchase
 
+@require_POST
+def cache_checkout_data(request):
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata = {
+            'cart': json.dumps(request.session.get('cart', {})),
+            'username': request.user,
+            'save_info': request.POST.get('save_info')
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'We could not process your request.')
+        return HttpResponse(content=e, status=400)
 
 def view_checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -33,6 +49,9 @@ def view_checkout(request):
         if purchase_form.is_valid():  # NOQA
             purchase = purchase_form.save(commit=False)
             purchase.save()
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            purchase.stripe_pid = pid
+            purchase.original_cart = json.dumps(cart)
             for item_id, item_data in cart.items():
                 try:
                     product = Product.objects.get(id=item_id)
