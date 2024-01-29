@@ -5,10 +5,13 @@ from django.views.decorators.http import require_POST
 import stripe  # NOQA
 import json
 from cart.contexts import cart_contents
+from profiles.forms import UserProfileForm
 from .forms import PurchaseForm
 
 from products.models import Product
 from .models import OrderLineItem, Purchase
+from profiles.models import UserProfile
+
 
 @require_POST
 def cache_checkout_data(request):
@@ -100,6 +103,25 @@ def view_checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                purchase_form = PurchaseForm(initial={
+                    'full_name': profile.user.get_full_name(),
+                    'email': profile.user.email,
+                    'phone_number': profile.default_phone_number,
+                    'country': profile.default_country,
+                    'postcode': profile.default_postcode,
+                    'town_or_city': profile.default_town_or_city,
+                    'street_address1': profile.default_street_address1,
+                    'street_address2': profile.default_street_address2,
+                    'county': profile.default_county,
+                })
+            except UserProfile.DoesNotExist:
+                purchase_form = PurchaseForm()
+        else:
+            purchase_form = PurchaseForm()
+
     if not stripe_public_key:
         messages.warning(request, 'Enter your stripe key.')
 
@@ -114,14 +136,35 @@ def view_checkout(request):
 
 
 def checkout_success(request, order_number):
-    save_info = request.session.get('save-info')
-    order = get_object_or_404(Purchase, order_number=order_number)
+    save_info = request.session.get('save_info')
+    purchase = get_object_or_404(Purchase, order_number=order_number)
+
+    profile = UserProfile.objects.get(user=request.user)
+    purchase.user_profile = profile
+    purchase.save()
+
+    if save_info:
+        profile_data = {
+            'default_phone_number': purchase.phone_number,
+            'default_country': purchase.country,
+            'default_postcode': purchase.postcode,
+            'default_town_or_city': purchase.town_or_city,
+            'default_street_address1': purchase.street_address1,
+            'default_street_address2': purchase.street_address2,
+            'default_county': purchase.county,
+        }
+
+        user_profile_form = UserProfileForm(profile_data, instance=profile)
+        if user_profile_form.is_valid():
+            user_profile_form.save()
+
     messages.success(request,
         f'Your order has been completed. Your order number is: #{order_number}'
     )
     if 'cart' in request.session:
         del request.session['cart']
     context = {
-        'order': order
+        'purchase': purchase
     }
     return render(request, 'checkout/checkout_success.html', context)
+
