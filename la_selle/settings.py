@@ -21,7 +21,7 @@ if DEBUG:
         ]
 else:
     ALLOWED_HOSTS = ['la-selle-45cacae9f212.herokuapp.com']
-    CSRF_TRUSTED_ORIGINS = ['la-selle-45cacae9f212.herokuapp.com']
+    CSRF_TRUSTED_ORIGINS = ['https://la-selle-45cacae9f212.herokuapp.com']
 
 
 # Application definition
