@@ -2,9 +2,8 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q 
 from django.db.models.functions import Lower
-from .models import Product
 from ratings.views import get_user_rating
-
+from .models import Product
 
 
 def all_products(request):
@@ -14,9 +13,10 @@ def all_products(request):
     query = None
     categories = None
     subcategories = None
-    technologies = None
+    technology = None
     sort = None
     direction = None
+    discount = None
 
     if request.GET:
         if 'sort' in request.GET:
@@ -90,5 +90,8 @@ def product_details(request, product_id):
     context = {
         'product': product,
         'ratings_form': ratings_form,
+    }
+    context = {
+        'product': product,
     }
     return render(request, 'products/product_details.html', context)

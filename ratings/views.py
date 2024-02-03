@@ -1,5 +1,9 @@
+from django.shortcuts import (
+    render, 
+    get_object_or_404, 
+    HttpResponse
+)
 from products.models import Product
-from django.shortcuts import render, get_object_or_404, HttpResponse
 from .models import UserRating
 from .forms import RatingsForm
 
@@ -24,5 +28,5 @@ def get_user_rating(request, product_id):
 
         if ratings_form.is_valid():
             print(ratings_form)
-            # ratings_form.save()
+            ratings_form.save()
             return ratings_form
