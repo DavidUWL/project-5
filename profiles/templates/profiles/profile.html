@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 ">
             <p>Your Delivery Details:</p>
             <form action="{% url 'view_profile' %}" method="POST" id="update-delivery-details-form">
                 {% csrf_token %}
@@ -28,8 +28,8 @@
             <p>your order history:</p>
             <div class="row">
                 <div class="col-12">
-                    <div class="order-history-table">
-                        <table class="table table-bg-none border table-hover overflow-auto order-history-table">
+                    <div class="order-history-table overflow-auto">
+                        <table class="table table-bg-none border table-hover order-history-table">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>

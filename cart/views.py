@@ -1,4 +1,10 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
+from django.shortcuts import (
+    render,
+    redirect,
+    reverse,
+    HttpResponse,
+    get_object_or_404
+)
 from django.contrib import messages
 from decimal import Decimal
 from products.models import Product
@@ -16,14 +22,13 @@ def add_to_cart(request, item_id):
     size = None
     if 'product_size' in request.POST:
         size = request.POST['product_size']
-        # messages.success(request, f'{product.name} added to your cart.')
+        messages.success(request, f'{product.name} added to your cart.')
     cart = request.session.get('cart', {})
 
     if size:
         if item_id in list(cart.keys()):
             if size in cart[item_id]['items_by_size'].keys():
                 cart[item_id]['items_by_size'][size] += quantity
-                messages.success(request, f'{product.name} added to your cart.')
             else:
                 cart[item_id]['items_by_size'] = quantity
                 messages.success(request, f'{product.name} added to your cart.')
@@ -88,7 +93,6 @@ def remove_from_cart(request, item_id):
         else:
             cart.pop(item_id)
             messages.success(request, f"Removed {product.name} from cart.")
-
 
         request.session['cart'] = cart
         return HttpResponse(status=200)

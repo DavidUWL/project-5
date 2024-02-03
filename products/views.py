@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q 
 from django.db.models.functions import Lower
-from .models import Product, Category, Subcategory, Technology
+from .models import Product
+from ratings.views import get_user_rating
+
 
 
 def all_products(request):
@@ -60,7 +62,7 @@ def all_products(request):
             query = request.GET['q']
             if not query:
                 messages.error(request, "you didn't enter any text to search!")
-            
+
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
@@ -79,10 +81,14 @@ def all_products(request):
 def product_details(request, product_id):
     """ Returns single product for product details page """
     product = get_object_or_404(Product, pk=product_id)
+    ratings_form = get_user_rating(request, product.id)
+
+    if ratings_form.is_valid():
+        ratings_form.save()
+
+    print(f" in product view: {ratings_form}")
     context = {
         'product': product,
+        'ratings_form': ratings_form,
     }
     return render(request, 'products/product_details.html', context)
-
-
-

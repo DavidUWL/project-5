@@ -1,8 +1,14 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse # NOQA
-from django.contrib import messages  # NOQA
-from django.conf import settings  # NOQA
+from django.shortcuts import (
+    render, 
+    redirect, 
+    reverse, 
+    get_object_or_404, 
+    HttpResponse
+  )  
+from django.contrib import messages
+from django.conf import settings
 from django.views.decorators.http import require_POST
-import stripe  # NOQA
+import stripe
 import json
 from cart.contexts import cart_contents
 from profiles.forms import UserProfileForm
@@ -18,7 +24,7 @@ def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
-        stripe.PaymentIntent.modify(pid, metadata = {
+        stripe.PaymentIntent.modify(pid, metadata={
             'cart': json.dumps(request.session.get('cart', {})),
             'username': request.user,
             'save_info': request.POST.get('save_info')
@@ -27,6 +33,7 @@ def cache_checkout_data(request):
     except Exception as e:
         messages.error(request, 'We could not process your request.')
         return HttpResponse(content=e, status=400)
+
 
 def view_checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -75,18 +82,24 @@ def view_checkout(request):
                             )
                             order_line_item.save()
                 except Product.DoesNotExist:
-                    messages.error(request, (
-                        "It looks like that item isn't in our database, please try again."
-                    )
+                    messages.error(
+                        request,
+                        (
+                            "It looks like that item isn't in our database, please try again."
+                        )
                     )
                     purchase.delete()
                     return redirect(reverse('view_cart'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[purchase.order_number]))
+            return redirect(
+                reverse('checkout_success', args=[purchase.order_number])
+                )
         else:
             messages.error(
-                request,  "We can't process your form, have a look and try again.")
+                request,
+                "We can't process your form, have a look and try again."
+                )
 
     else:
         cart = request.session.get('cart', {})
@@ -107,7 +120,6 @@ def view_checkout(request):
             try:
                 profile = UserProfile.objects.get(user=request.user)
                 purchase_form = PurchaseForm(initial={
-                    'full_name': profile.user.get_full_name(),
                     'email': profile.user.email,
                     'phone_number': profile.default_phone_number,
                     'country': profile.default_country,
@@ -117,6 +129,7 @@ def view_checkout(request):
                     'street_address2': profile.default_street_address2,
                     'county': profile.default_county,
                 })
+
             except UserProfile.DoesNotExist:
                 purchase_form = PurchaseForm()
         else:
@@ -125,7 +138,6 @@ def view_checkout(request):
     if not stripe_public_key:
         messages.warning(request, 'Enter your stripe key.')
 
-    purchase_form = PurchaseForm()
     context = {
         'purchase_form': purchase_form,
         'stripe_public_key': stripe_public_key,
@@ -158,7 +170,8 @@ def checkout_success(request, order_number):
         if user_profile_form.is_valid():
             user_profile_form.save()
 
-    messages.success(request,
+    messages.success(
+        request,
         f'Your order has been completed. Your order number is: #{order_number}'
     )
     if 'cart' in request.session:
@@ -167,4 +180,3 @@ def checkout_success(request, order_number):
         'purchase': purchase
     }
     return render(request, 'checkout/checkout_success.html', context)
-

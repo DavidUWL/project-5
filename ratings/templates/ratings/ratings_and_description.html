@@ -1,0 +1,35 @@
+{% if user.is_authenticated %}
+<button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Leave a review
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Leave a review</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST" id="ratings-form">
+                    {% csrf_token %}
+                    
+                    {{ ratings_form.rating_description | as_crispy_field  }}
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary rounded-0 logo-font"
+                            data-bs-dismiss="modal">Close</button>
+                        <button id="submit-button" type="submit"
+                            class="btn btn-dark rounded-0 align-items-center logo-font">
+                            Submit review
+                        </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div>
+    <a href="{% url 'account_login' %}"> Login to leave a review.</a>
+</div>
+{% endif %}

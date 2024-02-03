@@ -1,0 +1,20 @@
+Hi {{ order.full-name }},
+
+Thank you for ordering with us, it means alot. 
+
+Your Order Date: {{ order.order_date }}
+Order #: {{ order.order_number }}
+
+Order Total: €{{ order.order_total }}
+Delivery: €{{ order.delivery_cost }}
+Grand Total : €{{ order.grand_total }}
+
+Shipping Details Below :
+{{ order.country }}
+{{ order.town_or_city }}
+{{ order.street_address1 }}
+
+We hope you enjoy your new sanddle (or Saddles!) and we will see you on the road.
+
+Thank You,
+La Selle

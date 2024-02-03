@@ -14,9 +14,9 @@ DEBUG = True
 TESTING = False
 
 if DEBUG:
-    ALLOWED_HOSTS = ['8000-daviduwl-project5-jusbyi2qwcf.ws-eu107.gitpod.io']
+    ALLOWED_HOSTS = ['8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io']
     CSRF_TRUSTED_ORIGINS = [
-        'https://8000-daviduwl-project5-jusbyi2qwcf.ws-eu107.gitpod.io',
+        'https://8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io',
         'https://*.127.0.0.1'
         ]
 else:
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'checkout',
     'crispy_forms',
     'profiles',
+    'ratings',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'la_selle.urls'
@@ -120,16 +121,15 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'Theteam@LaSelle.com'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'None'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
-
-
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -160,13 +160,25 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [
-    BASE_DIR / 'static', 
+    BASE_DIR / 'static',
 ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+if 'USE_AWS' in os.environ:
+    AWS_STORAGE_BUCKET_NAME = 'la-selle'
+    AWS_S3_REGION_NAME = 'eu-north-1'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY_ID = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom.storages.MediaStore'
+    MEDIAFILES_LOCATION = 'media'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
