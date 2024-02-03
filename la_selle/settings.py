@@ -10,18 +10,18 @@ load_dotenv(dotenv_path)
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = False
+DEBUG = True
 TESTING = False
 
-if DEBUG:
-    ALLOWED_HOSTS = ['8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io']
-    CSRF_TRUSTED_ORIGINS = [
-        'https://8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io',
-        'https://*.127.0.0.1'
-        ]
-else:
-    ALLOWED_HOSTS = ['la-selle-45cacae9f212.herokuapp.com']
-    CSRF_TRUSTED_ORIGINS = ['https://la-selle-45cacae9f212.herokuapp.com']
+# if DEBUG:
+#     ALLOWED_HOSTS = ['8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io']
+#     CSRF_TRUSTED_ORIGINS = [
+#         'https://8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io',
+#         'https://*.127.0.0.1'
+#         ]
+# else:
+ALLOWED_HOSTS = ['la-selle-45cacae9f212.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://la-selle-45cacae9f212.herokuapp.com']
 
 
 # Application definition
