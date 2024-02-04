@@ -16,7 +16,6 @@ def all_products(request):
     technology = None
     sort = None
     direction = None
-    discount = None
 
     if request.GET:
         if 'sort' in request.GET:
@@ -91,7 +90,5 @@ def product_details(request, product_id):
         'product': product,
         'ratings_form': ratings_form,
     }
-    context = {
-        'product': product,
-    }
+
     return render(request, 'products/product_details.html', context)

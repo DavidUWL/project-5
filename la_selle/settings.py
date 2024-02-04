@@ -10,18 +10,18 @@ load_dotenv(dotenv_path)
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 TESTING = False
 
-# if DEBUG:
-#     ALLOWED_HOSTS = ['8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io']
-#     CSRF_TRUSTED_ORIGINS = [
-#         'https://8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io',
-#         'https://*.127.0.0.1'
-#         ]
-# else:
-ALLOWED_HOSTS = ['la-selle-45cacae9f212.herokuapp.com']
-CSRF_TRUSTED_ORIGINS = ['https://la-selle-45cacae9f212.herokuapp.com']
+if DEBUG:
+    ALLOWED_HOSTS = ['8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io']
+    CSRF_TRUSTED_ORIGINS = [
+        'https://8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io',
+        'https://*.127.0.0.1'
+        ]
+else:
+    ALLOWED_HOSTS = ['la-selle-45cacae9f212.herokuapp.com']
+    CSRF_TRUSTED_ORIGINS = ['https://la-selle-45cacae9f212.herokuapp.com']
 
 
 # Application definition
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'profiles',
     'ratings',
     'storages',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -184,6 +185,8 @@ if 'USE_AWS' in os.environ:
     MEDIAFILES_LOCATION = 'media'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
