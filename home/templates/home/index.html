@@ -6,11 +6,16 @@
 
 {% block content %}
 <div class="container header-container h-100">
-  <div class="row h-100">
-    <div class="col-6 col-md-5 my-auto">
-      <h1 class="display-1 logo-font text-light">Saddles that <span style="text-decoration: underline;">Win</span></h1>
-      <a href="{% url 'products' %}" class="my-4 logo-font btn btn-lg btn-secondary">Shop Now</a>
+  <div class="row">
+    <div class="col-6 col-2-lg">
+      <div class="text-center ms-2 text-light offset-2 mt-5 py-5">
+        <h2 class="display-4">"The best balance of comfort and speed."</h2>
+        <hr class="my-4">
+        <p class="lead">- Mathieu van der Poel</p>
+        <a href="{% url 'products' %}" class="my-4 logo-font btn btn-lg btn-secondary">Shop Now</a>
+      </div>
     </div>
   </div>
 </div>
+
 {% endblock %}
