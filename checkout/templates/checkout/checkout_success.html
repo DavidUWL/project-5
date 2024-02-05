@@ -1,18 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
 {% block page_header %}
-<!-- <div class="container header-container">
-  <div class="row">
-    <div class="col">
-
-    </div>
-  </div>
-</div> -->
 {% endblock %}
 
 {% block content %}
@@ -48,20 +42,20 @@
               <tr>
                 <th scope="row">{{ item.product.name }}</th>
                 <th scope="row">{% if item.product.size %}{{ item.product.size }}{% else %}Size N/A{% endif %}</th>
-                <th scope="row">{{ item.quantity }} X €{{ item.product.price }}</th>
+                <th scope="row">{{ item.quantity }} X €{{ item.product.price|intcomma }}</th>
               </tr>
               {% endfor %}
               <tr>
                 <th scope="row">Purchase total:</th>
-                <th scope="row" colspan="2" class="text-center">€{{ purchase.order_total }}</th>
+                <th scope="row" colspan="2" class="text-center">€{{ purchase.order_total|intcomma }}</th>
               </tr>
               <tr>
                 <th scope="row">Delivery Cost:</th>
-                <th scope="row" colspan="2" class="text-center">€{{ purchase.delivery_cost }}</th>
+                <th scope="row" colspan="2" class="text-center">€{{ purchase.delivery_cost|intcomma }}</th>
               </tr>
               <tr>
                 <th scope="row">Grand Total:</th>
-                <th scope="row" colspan="2" class="text-center">€{{ purchase.grand_total }}</th>
+                <th scope="row" colspan="2" class="text-center">€{{ purchase.grand_total|intcomma }}</th>
               </tr>
             </tbody>
           </table>

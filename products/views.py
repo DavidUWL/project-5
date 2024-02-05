@@ -82,10 +82,10 @@ def product_details(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     ratings_form = get_user_rating(request, product.id)
 
-    if ratings_form.is_valid():
-        ratings_form.save()
+    if request.method == "POST":
+        ratings_form = get_user_rating(request, product.id)
+        messages.success(request, 'Thank you for leaving a review.')
 
-    print(f" in product view: {ratings_form}")
     context = {
         'product': product,
         'ratings_form': ratings_form,

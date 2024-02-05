@@ -1,0 +1,4 @@
+User-agent : *
+Disallow: /accounts/
+Disallow: /cart/ 
+Sitemap:  https://la-selle-45cacae9f212.herokuapp.com/sitemap.xml

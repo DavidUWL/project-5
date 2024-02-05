@@ -10,7 +10,7 @@ load_dotenv(dotenv_path)
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = False
+DEBUG = True
 TESTING = False
 
 if DEBUG:
@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -45,7 +46,6 @@ INSTALLED_APPS = [
     'profiles',
     'ratings',
     'storages',
-    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

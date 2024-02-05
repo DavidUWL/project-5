@@ -3,6 +3,7 @@ from .models import Product, Category, Subcategory, Technology
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
+        'id',
         'sku',
         'name',
         'category',

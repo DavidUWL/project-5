@@ -15,7 +15,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="Description" content="Enter your description here"/>
+    <meta name="description" content="Explore our premium collection of racing bicycle saddles designed for optimal speed and comfort.
+        Find the perfect saddle to enhance your cycling performance.">
     {% endblock %}
 
     {% block extra_meta %}
@@ -48,7 +49,12 @@
     {% endblock %}
 
 
-    <title>La Selle {% block extra_title%}{% endblock %}</title>
+    <title>
+        La Selle
+        {% block extra_title%}
+        - Racing Bicycle Saddles for Speed and Comfort | Your E-Commerce Store
+        {% endblock %}
+    </title>
 
 </head>
 
@@ -144,9 +150,9 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     {% if request.user.is_authenticated %}
-                                        {% if request.user.is_superuser %}
-                                            <li><a class=" dropdown-item" href="#">Manage Products</a></li>
-                                        {% endif %}
+                                    {% if request.user.is_superuser %}
+                                    <li><a class=" dropdown-item" href="#">Manage Products</a></li>
+                                    {% endif %}
                                     <li><a class="dropdown-item" href="{% url 'view_profile' %}">My profile</a></li>
                                     <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                                     {% else %}
@@ -225,13 +231,12 @@
                     {% else %}
                     <p class="my-0">€{{ item.product.price }}</p>
                     {% endif %}
-                </div> 
+                </div>
             </div>
             {% endfor %}
             {% endif %}
         </div>
     </div>
-
 
 
     {% if messages %}
@@ -286,4 +291,5 @@
     {% endblock %}
 
 </body>
+
 </html>

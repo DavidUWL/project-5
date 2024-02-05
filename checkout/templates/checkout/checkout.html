@@ -1,19 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 {% load cart_tools %}
+{% load humanize %}
+
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
 {% block page_header %}
-<!-- <div class="container header-container">
-  <div class="row">
-    <div class="col">
 
-    </div>
-  </div>
-</div> -->
 {% endblock %}
 
 {% block content %}
@@ -53,18 +49,18 @@
                             €{{ item.product.price }}
                         </p>
                         <p class="my-0 discount-price">
-                            €{{ item.product.calculate_discount_price }}
+                            €{{ item.product.calculate_discount_price|intcomma }}
                         </p>
                         {% else %}
-                        <p class="my-0">€{{ item.product.price }}</p>
+                        <p class="my-0">€{{ item.product.price|intcomma }}</p>
                         {% endif %}
                     </div>
                     <div class="col-11 text-end text-decoration-underline fw-bolder">
                         {% if item.product.discount %}
-                        <p class="my-0">€{{ item.product.calculate_discount_price | calculate_subtotal:item.quantity }}
+                        <p class="my-0">€{{ item.product.calculate_discount_price | calculate_subtotal:item.quantity |intcomma }}
                         </p>
                         {% else %}
-                        <p class="my-0">€{{ item.product.price | calculate_subtotal:item.quantity }}</p>
+                        <p class="my-0">€{{ item.product.price | calculate_subtotal:item.quantity |intcomma }}</p>
                         {% endif %}
                     </div>
                 </div>
@@ -79,9 +75,9 @@
                         <p class="my-0">Grand Total:</p>
                     </div>
                     <div class="col-3">
-                        <p class="my-0">€{{ total | floatformat:2 }}</p>
+                        <p class="my-0">€{{ total | floatformat:2 |intcomma }}</p>
                         <p class="my-0">€{{ delivery | floatformat:2 }}</p>
-                        <p class="my-0"><strong>€{{ grand_total | floatformat:2 }}</strong></p>
+                        <p class="my-0"><strong>€{{ grand_total | floatformat:2 |intcomma }}</strong></p>
                     </div>
                 </div>
             </div>

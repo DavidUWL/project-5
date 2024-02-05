@@ -12,7 +12,7 @@ class UserRating(models.Model):
         blank=True,
         )
 
-    product_id = models.ForeignKey(
+    product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
         null=False,
