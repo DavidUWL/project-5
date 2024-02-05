@@ -16,9 +16,9 @@ TESTING = False
 if DEBUG:
     ALLOWED_HOSTS = ['8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io']
     CSRF_TRUSTED_ORIGINS = [
-        'https://8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io',
-        'https://*.127.0.0.1'
-        ]
+    'https://8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io',
+    'https://*.127.0.0.1'
+]
 else:
     ALLOWED_HOSTS = ['la-selle-45cacae9f212.herokuapp.com']
     CSRF_TRUSTED_ORIGINS = ['https://la-selle-45cacae9f212.herokuapp.com']
@@ -187,10 +187,9 @@ if 'USE_AWS' in os.environ:
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
 
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STANDARD_DELIVERY_CHARGE = 9.99 
+STANDARD_DELIVERY_CHARGE = 9.99
 
 # stripe
 
