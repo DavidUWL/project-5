@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load humanize %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}">
 {% endblock %}
@@ -23,6 +23,10 @@
                 {{ form|crispy }}
                 <button class="btn btn-dark logo-font" type="submit">Update</button>
             </form>
+            <form method="post" action="{% url 'delete_user_profile' %}">
+                {% csrf_token %}
+                <button class="btn btn-secondary btn-sm logo-font" type="submit">Delete Details</button>
+            </form>
         </div>
         <div class="col-12 col-lg-6">
             <p>your order history:</p>
@@ -42,7 +46,7 @@
                                 <tr>
                                     <th scope="row" title="{{ purchase.order_number }}"><a href="{% url 'purchase_history' purchase.order_number %}">{{ purchase.order_number|truncatechars:5 }}</a></th>
                                     <th scope="row">{{ purchase.date }}</th>
-                                    <th scope="row">€{{ purchase.grand_total }}</th>
+                                    <th scope="row">€{{ purchase.grand_total|intcomma }}</th>
                                 </tr>
                                 {% endfor %}
                             </tbody>

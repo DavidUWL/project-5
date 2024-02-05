@@ -23,6 +23,10 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def delete(self, *args, **kwargs):
+        user_instance = self.user
+        super().delete(*args, **kwargs)
+        UserProfile.objects.create(user=user_instance)
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
