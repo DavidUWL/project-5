@@ -1,17 +1,21 @@
-from django.shortcuts import get_object_or_404
-from products.models import Product
-from django.conf import settings
 from decimal import Decimal
+from django.shortcuts import get_object_or_404
+from django.conf import settings
+from products.models import Product
 
 
 def cart_contents(request):
+
+    """
+    maintains and displays the cart contents" 
+    """
 
     cart_items = []
     total = 0
     product_count = 0
     grand_total = 0
     cart = request.session.get('cart', {})
-    
+
     for item_id, item_data in cart.items():
         if isinstance(item_data, int):
             product = get_object_or_404(Product, pk=item_id)

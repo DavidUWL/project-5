@@ -1,22 +1,21 @@
+import json
+import stripe
 from django.shortcuts import (
-    render, 
-    redirect, 
-    reverse, 
-    get_object_or_404, 
+    render,
+    redirect,
+    reverse,
+    get_object_or_404,
     HttpResponse
-  )  
+)
 from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.http import require_POST
-import stripe
-import json
 from cart.contexts import cart_contents
 from profiles.forms import UserProfileForm
-from .forms import PurchaseForm
-
-from products.models import Product
-from .models import OrderLineItem, Purchase
 from profiles.models import UserProfile
+from products.models import Product
+from .forms import PurchaseForm
+from .models import OrderLineItem, Purchase
 
 
 @require_POST
@@ -94,12 +93,12 @@ def view_checkout(request):
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(
                 reverse('checkout_success', args=[purchase.order_number])
-                )
+            )
         else:
             messages.error(
                 request,
                 "We can't process your form, have a look and try again."
-                )
+            )
 
     else:
         cart = request.session.get('cart', {})

@@ -2,10 +2,10 @@ import json
 import time
 import stripe
 
-from django.http import HttpResponse
 from products.models import Product
-from .models import Purchase, OrderLineItem
+from .models import OrderLineItem
 from profiles.models import UserProfile
+from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
