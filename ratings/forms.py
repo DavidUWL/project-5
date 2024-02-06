@@ -5,6 +5,7 @@ class RatingsForm(forms.ModelForm):
     class Meta:
         model = UserRating
         fields = (
+            'product',
             'rating_description',
         )
 
@@ -13,7 +14,8 @@ class RatingsForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         placeholders = {
-            'rating_description': 'Write a short review'
+            'rating_description': 'Write a short review',
+            'product': 'your selected product.'
         }
         for field in self.fields:
             placeholder = placeholders[field]
