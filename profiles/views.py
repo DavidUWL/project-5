@@ -1,18 +1,22 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from ratings.views import collect_user_ratings
 from checkout.models import Purchase
 from .models import UserProfile
 from .forms import UserProfileForm
-
+from ratings.models import UserRating
 
 
 def view_profile(request):
+    user = request.user
+
     template = 'profiles/profile.html'
     profile = get_object_or_404(UserProfile, user=request.user)
     form = UserProfileForm(request.POST, instance=profile)
     purchases = profile.purchases.all()
     purchases = purchases.order_by('-date')
+    user_ratings = UserRating.objects.filter(user_profile=user)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -26,6 +30,7 @@ def view_profile(request):
         'form': form,
         'profile': profile,
         'purchases': purchases,
+        'user_ratings': user_ratings,
     }
 
     return render(request, template, context)
@@ -49,3 +54,5 @@ def purchase_history(request, order_number):
     }
 
     return render(request, template, context)
+
+

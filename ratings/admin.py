@@ -5,7 +5,7 @@ class RatingsAdmin(admin.ModelAdmin):
 
     list_display = (
         'user_profile', 
-        'get_product_name', 
+        # 'get_product_name', 
         'product_rating', 
         'rating_description'
         )
@@ -17,10 +17,10 @@ class RatingsAdmin(admin.ModelAdmin):
 
     ordering = ('product_id',)
 
-    def get_product_name(self, obj):
-        return obj.product_id.name if obj.product_id else None
-        
-    get_product_name.short_description = 'Product Name'
+    # def get_product_name(self, obj):
+    #     return obj.product_id.name if obj.product_id else None
+
+    # get_product_name.short_description = 'Product Name'
 
 
 admin.site.register(UserRating, RatingsAdmin)

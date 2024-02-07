@@ -1,12 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 from products.models import Product
-from profiles.models import UserProfile
 
 
 class UserRating(models.Model):
 
-    user_profile = models.ForeignKey(
-        UserProfile,
+    user_profile = models.OneToOneField(
+        User,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,

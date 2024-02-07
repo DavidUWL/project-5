@@ -1,3 +1,7 @@
 .order-history-table {
     max-height: 320px;
 }
+
+.card {
+    height: 12rem;
+}

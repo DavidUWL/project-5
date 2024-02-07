@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.db.models import Q 
 from django.db.models.functions import Lower
 from ratings.views import get_user_rating
+from ratings.models import UserRating
+from ratings.forms import RatingsForm
 from .models import Product
 
 
@@ -80,11 +82,27 @@ def all_products(request):
 def product_details(request, product_id):
     """ Returns single product for product details page """
     product = get_object_or_404(Product, pk=product_id)
-    ratings_form = get_user_rating(request, product.id)
+    ratings_form = RatingsForm()
 
     if request.method == "POST":
-        ratings_form = get_user_rating(request, product.id)
-        messages.success(request, 'Thank you for leaving a review.')
+        lookup_params = {
+            'user_profile': request.user, 
+            'product': product
+            }
+            
+        try:
+            already_rated = UserRating.objects.get(**lookup_params)
+            messages.error(request, 'You have already rated this product.')
+        except UserRating.DoesNotExist:
+            UserRating.objects.create(
+                user_profile=request.user,
+                product=product,
+                rating_description=request.POST['rating_description']
+            )
+            messages.success(request, 'Thank you for leaving a review.')
+        except Exception as e:
+            messages.error(request, f'An error occurred: {e}')
+
 
     context = {
         'product': product,

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load humanize %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}">
 {% endblock %}
@@ -16,7 +17,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-lg-6 ">
+        <div class="col-12 col-lg-6">
             <p>Your Delivery Details:</p>
             <form action="{% url 'view_profile' %}" method="POST" id="update-delivery-details-form">
                 {% csrf_token %}
@@ -28,35 +29,12 @@
                 <button class="btn btn-secondary btn-sm logo-font" type="submit">Delete Details</button>
             </form>
         </div>
-        <div class="col-12 col-lg-6">
-            <p>your order history:</p>
-            <div class="row">
-                <div class="col-12">
-                    <div class="order-history-table overflow-auto">
-                        <table class="table table-bg-none border table-hover order-history-table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Grand Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for purchase in purchases %}
-                                <tr>
-                                    <th scope="row" title="{{ purchase.order_number }}"><a href="{% url 'purchase_history' purchase.order_number %}">{{ purchase.order_number|truncatechars:5 }}</a></th>
-                                    <th scope="row">{{ purchase.date }}</th>
-                                    <th scope="row">€{{ purchase.grand_total|intcomma }}</th>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        <div class="col-12 col-lg-6 d-flex profile-cards">
+            {% include 'profiles/order_history_modal.html' %}
+            {% include 'ratings/ratings_history_modal.html' %}
         </div>
     </div>
 </div>
-</div>
+
 
 {% endblock %}

@@ -1,0 +1,53 @@
+<div class="col-sm-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Your Ratings <i class="fa-solid fa-star"></i></h5>
+            <p class="card-text">View all the products you have previously rated.</p>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ratingsModal">
+                View
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="ratingsModal" tabindex="-1" aria-labelledby="RatingsModalTable" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ratingsModal">Your Ratings</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12">
+                    <p>your product ratings:</p>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="rating-history-table overflow-auto">
+                                <table class="table table-bg-none border table-hover order-history-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Product</th>
+                                            <th scope="col">Rating Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for rating in user_ratings %}
+                                        <tr>
+                                            <th scope="row">{{ rating.product }}</th>
+                                            <th scope="row">{{ rating.rating_description }}</th>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>

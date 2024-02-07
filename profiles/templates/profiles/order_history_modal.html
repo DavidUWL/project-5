@@ -1,0 +1,57 @@
+{% load humanize %}
+
+<div class="col-sm-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Your Orders <i class="fa-solid fa-cart-shopping"></i></h5>
+            <p class="card-text">View all your previous orders.</p>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#OrdersModal">
+                View
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="OrdersModal" tabindex="-1" aria-labelledby="OrdersModalTable" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="OrdersModal">Order History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>your order history:</p>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="order-history-table overflow-auto">
+                            <table class="table table-bg-none border table-hover order-history-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Grand Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for purchase in purchases %}
+                                    <tr>
+                                        <th scope="row" title="{{ purchase.order_number }}"><a
+                                                href="{% url 'purchase_history' purchase.order_number %}">{{ purchase.order_number|truncatechars:5 }}</a>
+                                        </th>
+                                        <th scope="row">{{ purchase.date }}</th>
+                                        <th scope="row">€{{ purchase.grand_total|intcomma }}</th>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>

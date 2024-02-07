@@ -13,14 +13,7 @@
             <div class="modal-body">
                 <form action="" method="POST" id="ratings-form">
                     {% csrf_token %}
-                    <!-- <div>
-                        <p class="lead logo-font">
-                            Product reviews coming <span class="text-decoration-underline">soon!</span>
-                        </p>
-                    </div> -->
-                    <!-- ratings to be implemented soon -->
                     {{ ratings_form.rating_description | as_crispy_field  }}
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary rounded-0 logo-font"
                             data-bs-dismiss="modal">Close</button>
