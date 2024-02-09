@@ -85,6 +85,7 @@ def product_details(request, product_id):
     ratings_form = RatingsForm()
 
     if request.method == "POST":
+        
         lookup_params = {
             'user_profile': request.user, 
             'product': product
