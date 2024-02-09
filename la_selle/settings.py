@@ -3,6 +3,10 @@ import os
 from dotenv import load_dotenv
 import dj_database_url
 
+
+if os.path.exists("env.py"):
+  import env
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 dotenv_path = os.path.join(BASE_DIR, '.env')
 load_dotenv(dotenv_path)
@@ -10,7 +14,7 @@ load_dotenv(dotenv_path)
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 TESTING = False
 
 if DEBUG:
@@ -21,7 +25,7 @@ if DEBUG:
 ]
 else:
     ALLOWED_HOSTS = ['la-selle-45cacae9f212.herokuapp.com']
-    CSRF_TRUSTED_ORIGINS = ['https://la-selle-45cacae9f212.herokuapp.com']
+    CSRF_TRUSTED_ORIGINS = ['la-selle-45cacae9f212.herokuapp.com']
 
 
 # Application definition
@@ -194,6 +198,6 @@ STANDARD_DELIVERY_CHARGE = 9.99
 # stripe
 
 STRIPE_CURRENCY = 'EUR'
-STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
-STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
