@@ -5,11 +5,11 @@ from products.models import Product
 
 class UserRating(models.Model):
 
-    user_profile = models.OneToOneField(
+    user_profile = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
         null=True,
-        blank=True,
+        blank=False,
         )
 
     product = models.ForeignKey(

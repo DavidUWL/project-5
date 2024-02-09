@@ -89,10 +89,10 @@ def product_details(request, product_id):
             'user_profile': request.user, 
             'product': product
             }
-            
         try:
-            already_rated = UserRating.objects.get(**lookup_params)
-            messages.error(request, 'You have already rated this product.')
+            already_rated = UserRating.objects.get(user_profile=request.user, product=product)
+            if already_rated:
+                messages.error(request, 'You have already rated this product.')
         except UserRating.DoesNotExist:
             UserRating.objects.create(
                 user_profile=request.user,
