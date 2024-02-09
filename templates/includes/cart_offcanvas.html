@@ -6,10 +6,17 @@
     <div class="row w-100 mt-2">
         <div class="col-12 d-flex justify-content-end">
             <p class="lead fw-bold mx-auto">total : €{{ grand_total }}</p>
-            <a href="{% url 'view_cart' %}" class="btn btn-dark rounded-0 align-items-center">
-                <span><small><i class="fa-solid fa-basket-shopping"></i></small></span>
-                Checkout
+            {% if user.is_authenticated %}
+                <a href="{% url 'view_cart' %}" class="btn btn-dark rounded-0 align-items-center">
+                    <span><small><i class="fa-solid fa-basket-shopping"></i></small></span>
+                        Checkout
+                </a>
+            {% else %}
+            <a href="{% url 'account_login' %}" class="btn btn-dark rounded-0 align-items-center">
+                <span><small><i class="fa-solid fa-right-to-bracket"></i></small></span>
+                    Login
             </a>
+            {% endif %}
         </div>
     </div>
     <div class="offcanvas-body">
