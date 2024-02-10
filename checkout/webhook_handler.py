@@ -19,12 +19,12 @@ class StripeWH_Handler:
     def send_order_confirmed_email(self, order):
         customer_email = order.email
         subject = render_to_string(
-            'checkout/emails/order_confirmed_email/order_confirmed_email_subject.txt',
-            { 'order': order }
+            'checkout/emails/order_confirmed_email_body.txt',
+            {'order': order}
         )
         body = render_to_string(
-            'checkout/emails/order_confirmed_email/order_confirmed_email_body.txt',
-            { 'order': order }
+            'checkout/emails/order_confirmed_email_body.txt',
+            {'order': order}
         )
         send_mail(
             subject,
