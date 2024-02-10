@@ -3,7 +3,7 @@ import time
 import stripe
 
 from products.models import Product
-from .models import OrderLineItem
+from .models import OrderLineItem, Purchase
 from profiles.models import UserProfile
 from django.http import HttpResponse
 from django.core.mail import send_mail
@@ -71,7 +71,7 @@ class StripeWH_Handler:
         attempt = 1
         while attempt <= 5:
             try:
-                order = Order.objects.get(
+                order = Purchase.objects.get(
                     full_name__iexact=shipping_details.name,
                     user_profile=profile,
                     email__iexact=billing_details.email,
@@ -88,7 +88,7 @@ class StripeWH_Handler:
                 )
                 order_exists = True
                 break
-            except Order.DoesNotExist:
+            except Purchase.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
         if order_exists:
@@ -101,7 +101,7 @@ class StripeWH_Handler:
         else:
             order = None
             try:
-                order = Order.objects.create(
+                order = Purchase.objects.create(
                     full_name=shipping_details.name,
                     user_profile=profile,
                     email=billing_details.email,
