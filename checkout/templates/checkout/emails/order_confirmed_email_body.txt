@@ -1,6 +1,6 @@
 Hi {{ order.full_name }},
 
-Thank you for ordering with us, it means alot. 
+Thank you for ordering with La Selle. 
 
 Your Order Date: {{ order.order_date }}
 Order #: {{ order.order_number }}
@@ -14,7 +14,7 @@ Shipping Details Below :
 {{ order.town_or_city }}
 {{ order.street_address1 }}
 
-We hope you enjoy your new sanddle (or Saddles!) and we will see you on the road.
+We hope you enjoy your new saddle (or saddles!).
 
 Thank You,
 La Selle
