@@ -5,7 +5,7 @@ import dj_database_url
 
 
 if os.path.exists("env.py"):
-  import env
+    import env
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 dotenv_path = os.path.join(BASE_DIR, '.env')
@@ -17,7 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 TESTING = False
 
-if not DEBUG:
+if DEBUG:
     ALLOWED_HOSTS = ['8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io']
     CSRF_TRUSTED_ORIGINS = [
     'https://8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io',
@@ -26,7 +26,6 @@ if not DEBUG:
 else:
     ALLOWED_HOSTS = ['la-selle-45cacae9f212.herokuapp.com']
     CSRF_TRUSTED_ORIGINS = ['la-selle-45cacae9f212.herokuapp.com']
-
 
 # Application definition
 
@@ -199,17 +198,12 @@ STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
 
+# Email configuration
 
-if not DEBUG:
-    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    # DEFAULT_FROM_EMAIL = 'Theteam@LaSelle.com'
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_USE_TLS = True
-    EMAIL_PORT = 587
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
-    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'Theteam@LaSelle.com'
+
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True

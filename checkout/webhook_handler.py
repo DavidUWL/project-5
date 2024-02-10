@@ -32,12 +32,6 @@ class StripeWH_Handler:
             settings.DEFAULT_FROM_EMAIL,
             [customer_email]
         )
-        print(send_mail(
-            subject,
-            body,
-            settings.DEFAULT_FROM_EMAIL,
-            [customer_email]
-        ))
 
     def handle_event(self, event):
         return HttpResponse(
