@@ -1,4 +1,4 @@
-Hi {{ order.full-name }},
+Hi {{ order.full_name }},
 
 Thank you for ordering with us, it means alot. 
 
