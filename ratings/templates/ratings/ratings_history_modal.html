@@ -27,7 +27,7 @@
                                         <tr>
                                             <th scope="col">Product</th>
                                             <th scope="col">Rating Description</th>
-                                            <th scope="col">Delete?</th>
+                                            <th scope="col"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -39,7 +39,7 @@
                                                 <form method="POST" action="{% url 'delete_user_rating' rating.id %}"
                                                     class="delete-form" id="deleteForm">
                                                     {% csrf_token %}
-                                                    <button class="text-danger border-0 bg-none ratings-delete-button" type="submit">
+                                                    <button class="border-0 bg-none ratings-delete-button" type="submit" disabled>
                                                         <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -56,7 +56,7 @@
             <div class="modal-footer">
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="enable-deletion">
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Enable deletion</label>
+                    <label class="form-check-label" for="enable-deletion">Enable deletion</label>
                 </div>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
@@ -68,6 +68,12 @@
     $('#enable-deletion').change(function() {
     let isChecked = $(this).prop('checked');
     $('.ratings-delete-button').prop('disabled', !isChecked);
+    if (isChecked) {
+        $('.ratings-delete-button').addClass('text-danger'); 
+    } else {
+        $('.ratings-delete-button').removeClass('text-danger'); 
+    }
+     
 })
 
 </script>
