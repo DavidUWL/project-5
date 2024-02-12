@@ -1,0 +1,15 @@
+<div id="carouselExampleControls" class="carousel slide carousel-fade border border-secondary rounded p-1 bg-light shadow text-center my-2 w-75" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {% if product_ratings %}
+      {% for product_rating in product_ratings %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="2000">
+          <p class="lead d-block w-100">{{ product_rating.rating_description|truncatechars:25 }} - <span class="text-muted">{{ product_rating.user_profile|truncatechars:8 }}</span></p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="carousel-item active">
+        <p class="lead d-block w-100 text-muted">This product has no ratings.</p>
+      </div>
+    {% endif %}
+  </div>
+</div>

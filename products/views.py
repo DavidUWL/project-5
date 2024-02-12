@@ -83,13 +83,9 @@ def product_details(request, product_id):
     """ Returns single product for product details page """
     product = get_object_or_404(Product, pk=product_id)
     ratings_form = RatingsForm()
+    product_ratings = UserRating.objects.filter(product=product)
 
     if request.method == "POST":
-        
-        lookup_params = {
-            'user_profile': request.user, 
-            'product': product
-            }
         try:
             already_rated = UserRating.objects.get(user_profile=request.user, product=product)
             if already_rated:
@@ -108,6 +104,7 @@ def product_details(request, product_id):
     context = {
         'product': product,
         'ratings_form': ratings_form,
+        'product_ratings': product_ratings,
     }
 
     return render(request, 'products/product_details.html', context)
