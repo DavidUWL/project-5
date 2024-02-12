@@ -27,7 +27,7 @@ class UserRating(models.Model):
     )
 
     rating_description = models.CharField(
-        max_length=127,
+        max_length=30,
         null=True,
         blank=True,
     )

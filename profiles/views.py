@@ -55,4 +55,13 @@ def purchase_history(request, order_number):
 
     return render(request, template, context)
 
+def delete_user_rating(request, rating_id):
+    if request.method == 'POST':
+        user_rating = get_object_or_404(UserRating, pk=rating_id)
+        user_rating.delete()
+        messages.success(request, 'Your rating has been deleted.')
+        return redirect('view_profile')
+    else:
+        messages.warning(request, 'Deletion was not confirmed.')
+    return render(request, 'profile.html')
 
