@@ -31,7 +31,7 @@ La Selle is a fictitious bicycle saddle E-Commerce site created using the Django
 ## User Experience (UX)
 ### Initial Discussion
 La Selle was created to accelerate product sales and create greater branding exposure for the saddle manufacturer "La Selle".  
- 
+
 
 ### User Stories
 A full list of user stories with documentation outlining the user stories and their respective storyboard can be found [here.](https://github.com/users/DavidUWL/projects/2/views/1?layout=table&pane=info) 
@@ -131,6 +131,7 @@ Bootstrap 5's "Native Font Stack" was used for the bread and butter text of the 
 ## Features By Page
 _Each Page feature section has been formatted as a dropdown for image tidiness, please click on them to expand the dropdown._
 ### Home page
+![Homepage full](readme_images/features/home/homepage_full.png)
 <details>
   <summary>
   The home page's Navbar is dynamic based on the login state of the user. Users will not be able to view their profile or checkout until they are authenticated.
@@ -162,7 +163,7 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
 <hr>
 
 ### Products
-
+![All products full page](readme_images/features/products/all_products_full.png)
 <details>
   <summary>
     The header bar present on each page is dynamic based on the highest discount value assigned to a product in the products table. If a product is added with a discount of 20% to the products table, this would be automatically reflected in the banner. <br>
@@ -200,7 +201,7 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
 <hr>
 
 ### Product details
-
+![Product details page full](readme_images/features/product_details/product_details_full.png)
 <details>
   <summary>
   Authenticated users can leave a review of products, this is then stored in the database. 
@@ -236,7 +237,7 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
 <hr>
 
 ### Cart
-
+  ![Cart page full](readme_images/features/cart/cart_full.png)
 <details>
   <summary>
     Users will only be able to click through to the checkout when authenticated.
@@ -264,7 +265,7 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
 <hr>
 
 ### Checkout
-
+  ![Checkout page full](readme_images/features/checkout/checkout_full.png)
 <details>
   <summary>
     Delivery details can be saved at the checkout, this will save to the users profile.
@@ -279,6 +280,14 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
   </summary>
 
   ![Stripe payments](readme_images/features/checkout/stripe_payments.png)
+</details>
+
+<details>
+  <summary>
+    A custom spinner was implemented that occurs when the payment button has been clicked, this will be rendered until the stripe payment is complete. 
+  </summary>
+
+  ![Stripe payments spinner](readme_images/features/checkout/checkout_spinner.png)
 </details>
 
 <hr>
@@ -296,7 +305,7 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
 <hr>
 
 ### Profiles
-
+  ![Profile page full](readme_images/features/profile/profile_full.png)
 <details>
   <summary>
     The user profile has been created with a modular setup in mind, allowing sections to be easily added in the future. 
@@ -355,9 +364,13 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
 
 ### Defensive Design
 * Users must be validated to access any part of the site that requires authentication, including the cart/checkout/profile pages. <br>
-A custom 404 page has been implemented that will be returned if any page/records cannot be found.
-<hr>
+* A custom 404 page has been implemented that will be returned if any page/records cannot be found.
+![Custom 404 page](readme_images/features/defensive_design/custom_404.png) 
+<br>
 
+* User input fields have either custom validation written for values, or inherited required status from their database models. 
+![Form validation required](readme_images/features/defensive_design/form_required_validation.png)
+![Quantity validation](readme_images/features/defensive_design/quantity_validation.png)
 ### Table Automation 
 
 ```python 
@@ -460,8 +473,10 @@ price = MoneyField(max_digits=14, decimal_places=2, default_currency='EUR')
 * Gitpod used as the coding environment with git for version control. <br>
 * Balsamic For wireframes. 
 * Google Dev tools for development and testing responsiveness. 
-* [Figma](https://www.figma.com/files/recents-and-sharing?fuid=1308151216497747353) 
-  for creating the Database Schema. 
+* [DbVisualiser.](https://www.dbvis.com/) 
+  for creating the Database Schema's. 
+* [Site Palete](https://chromewebstore.google.com/detail/site-palette/pekhihjiehdafocefoimckjpbkegknoh?hl=en-GB)
+  to create the website colour palette image. 
 
 
 ## Deployment & Local Development
@@ -489,23 +504,19 @@ The Heroku App can be created by the following: <br>
   ```python
   pip3 freeze > requirements.txt 
   ```
-  3. In my case, i had to add the following line to my requirements.txt due to the version of python/packages installed to allow heroku to deploy: 
-  ```python
-  backports.zoneinfo==0.2.1;python_version<"3.9"
-  ```
-  4. Open your .env file and insert your `DATABASE_URL` variable and its URL value(From step 4 in ElephantSQL steps).
-  5. In settings.py Under your OS import - write `import dj_database_url`.
-  6. Find your DATABASES variable in settings.py and comment it out, replacing it with the below: 
+  3. Open your .env file and insert your `DATABASE_URL` variable and its URL value(From step 4 in ElephantSQL steps).
+  4. In settings.py Under your OS import - write `import dj_database_url`.
+  5. Find your DATABASES variable in settings.py and comment it out, replacing it with the below: 
   ```python 
   DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
   }
   ```
-  7. Run your server from the terminal to verify your database connection with `python3 manage.py runserver`
+  6. Run your server from the terminal to verify your database connection with `python3 manage.py runserver`
 
-  8. Create your superuser with the terminal command : `python3 manage.py createsuperuser`
-  9. View your new superuser within elephant SQL by querying the auth_user table. 
-  10. modify your database pointers in settings.py to the below:
+  7. Create your superuser with the terminal command : `python3 manage.py createsuperuser`
+  8. View your new superuser within elephant SQL by querying the auth_user table. 
+  9. modify your database pointers in settings.py to the below:
   ```python
   if DEBUG:
       DATABASES = {
@@ -519,12 +530,12 @@ The Heroku App can be created by the following: <br>
           'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
       }
   ```
-  11. If your `DEBUG` variable in settings.py is set to `True` you will now use the SQLite database for developement, if false you will be working with the deployed database.
-  12. Create a `Procfile` (capital P) in your root directory and add the below line of code to serve your app via gunicorn: 
+  10. If your `DEBUG` variable in settings.py is set to `True` you will now use the SQLite database for development, if false you will be working with the deployed database.
+  11. Create a `Procfile` (capital P) in your root directory and add the below line of code to serve your app via gunicorn: 
   ```python
   web: gunicorn YOUR_APP_NAME.wsgi:application
   ``` 
-  13. Add the below code into your middleware config in settings.py to configure `whitenoise` and allow it to serve your static files to Heroku: 
+  12. Add the below code into your middleware config in settings.py to configure `whitenoise` and allow it to serve your static files to Heroku: 
   ```python
   MIDDLEWARE = [
     # ...
@@ -536,25 +547,25 @@ The Heroku App can be created by the following: <br>
   STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
   ```
 
-  14. add the below code to your allowed hosts and modify the Heroku URL to your deployed URL: 
+  13. add the below code to your allowed hosts and modify the Heroku URL to your deployed URL: 
   ```python
   if DEBUG:
-    ALLOWED_HOSTS = ['8000-daviduwl-project4-jwzitk3c01w.ws-eu106.gitpod.io']
+    ALLOWED_HOSTS = ['8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io']
   else: 
-    ALLOWED_HOSTS = ['therestaurant-ec18b29952b2.herokuapp.com']
+    ALLOWED_HOSTS = ['la-selle-45cacae9f212.herokuapp.com']
   ``` 
-  15.  Enable Automatic deployments on Heroku within the deploy section of your app. Connect via your GitHub credentials and search for your current working repo and connect, you will now be able to select automatic deployments below. 
-  16. Save your current changes and add a commit message and push to GitHub.
+  14.  Enable Automatic deployments on Heroku within the deploy section of your app. Connect via your GitHub credentials and search for your current working repo and connect, you will now be able to select automatic deployments below. 
+  15. Save your current changes and add a commit message and push to GitHub.
 
 ## Forking/Cloning 
 To create a fork for this repository: 
-* Navigate to the url - https://github.com/DavidUWL/Project-4
+* Navigate to the url - https://github.com/DavidUWL/project-5
   * In the top right corner, click on the Fork dropdown. 
   * Create a new fork
   * Name the repository and/or give it a description - Click create fork. 
 * You have now created a fork of this repository! 
 To create a clone of this repository:
-* Navigate to the url - https://github.com/DavidUWL/Project-4
+* Navigate to the url - https://github.com/DavidUWL/project-5
   * Click on the "code" button and select which format you would like to clone with and copy that link.
   * In your Terminal window of whichever IDE you use, navigate to the whichever directory you want to clone the project to. 
   * type into the terminal "git clone", you have now cloned the project! 
