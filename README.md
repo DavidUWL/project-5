@@ -352,8 +352,10 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
 
 <hr>
 
+
 ### Defensive Design
-* As mentioned above, users will not be able to access certain pages of the website without being authenticated. With both a mix of the dynamic navbar and Django's templating language, the option will not be given to the user - but if the URL is entered manually the user will be prompted to sign in or register regardless. 
+* Users must be validated to access any part of the site that requires authentication, including the cart/checkout/profile pages. <br>
+A custom 404 page has been implemented that will be returned if any page/records cannot be found.
 <hr>
 
 ### Table Automation 
