@@ -203,38 +203,37 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
 
 <details>
   <summary>
-
+  Authenticated users can leave a review of products, this is then stored in the database. 
   </summary>
 
-  ![Discount header bar](readme_images/features/products/discount_bar.png)
+  ![Leave review](readme_images/features/product_details/leave_review.png)
 </details>
 
 <details>
   <summary>
-
+    Product reviews are filtered and passed to a modified bootstrap carousel that will cycle each review. 
   </summary>
 
-  ![Discount pricing and category search](readme_images/features/products/dynamic_discount_category_search.png)
+  ![Dynamic review section](readme_images/features/product_details/product_details_review.png)
 </details>
 
 <details>
   <summary>
- 
+    A validated quantity selector has been added that will only allow quantities between 1 and 99. 
   </summary>
 
-  ![Return to top button](readme_images/features/products/return_button.png)
+  ![Quantity selector](readme_images/features/product_details/quantity_selector.png)
+</details>
+
+<details>
+  <summary>
+    A size selector has been added for products that may have multiple sizes. 
+  </summary>
+
+  ![Size selector](readme_images/features/product_details/size_selector.png)
 </details>
 
 <hr>
-
-<details>
-  <summary>
-
-  </summary>
-
-  ![Sort by feature](readme_images/features/products/sort_by.png)
-</details>
-
 
 ### Cart
 
@@ -259,7 +258,87 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
     The cart page allows modifications of the users items in the cart, including adding or removing quantitys/items.
   </summary>
 
-  ![Return to top button](readme_images/features/cart/update_remove_cart.png)
+  ![Update or remove from cart](readme_images/features/cart/update_remove_cart.png)
+</details>
+
+<hr>
+
+### Checkout
+
+<details>
+  <summary>
+    Delivery details can be saved at the checkout, this will save to the users profile.
+  </summary>
+
+  ![Save details](readme_images/features/checkout/save_details.png)
+</details>
+
+<details>
+  <summary>
+    Stripe payments have been integrated to the website, allowing both users and the site admins/owners to process their payments and orders with ease. 
+  </summary>
+
+  ![Stripe payments](readme_images/features/checkout/stripe_payments.png)
+</details>
+
+<hr>
+
+### Accounts
+
+<details>
+  <summary>
+    The Allauth package has been used for user authentication and verification, their templates have been modified to suit the styling of the site. 
+  </summary>
+
+  ![Allauth account login](readme_images/features/accounts/accounts_sign_up.png)
+</details>
+
+<hr>
+
+### Profiles
+
+<details>
+  <summary>
+    The user profile has been created with a modular setup in mind, allowing sections to be easily added in the future. 
+  </summary>
+
+  ![User profile Cards](readme_images/features/profile/profile_order_rating_cards.png)
+</details>
+
+<details>
+  <summary>
+    The orders card will open a modal that returns all orders that a user has made, hyperlinking to their checkout success page, detailing their order details. This is ordered by most recent date for better UX. The table also takes into account overflow and will be scrollable depending on the amount of orders the user has made previously. 
+  </summary>
+
+  ![User order history](readme_images/features/profile/order_history.png)
+</details>
+
+<details>
+  <summary>
+    The ratings card will return all reviews that a user has made in a table similiar to the order history modal. It also contains a switch that enable deletions if the user would like to remove their ratings. This is disabled by default to prevent users from deleting their reviews accidently. 
+  </summary>
+
+  ![User ratings table](readme_images/features/profile/user_ratings_profile_table.png)
+</details>
+
+<details>
+  <summary>
+    The users shipping details can be created/save and delete from their profile. These details will autofill when a user is at the checkout page. 
+  </summary>
+
+  ![User shipping details](readme_images/features/profile/shipping_details_crud.png)
+</details>
+
+<hr>
+
+### Emails
+
+<details>
+  <summary>
+    
+  </summary>
+
+  ![Signup email]()
 </details>
 
 <details>
@@ -267,30 +346,15 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
 
   </summary>
 
-  ![Sort by feature](readme_images/features/products/sort_by.png)
+  ![Order confirmation email]()
 </details>
 
+
+<hr>
 
 ### Defensive Design
 * As mentioned above, users will not be able to access certain pages of the website without being authenticated. With both a mix of the dynamic navbar and Django's templating language, the option will not be given to the user - but if the URL is entered manually the user will be prompted to sign in or register regardless. 
 <hr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### Table Automation 
 
