@@ -30,105 +30,269 @@ La Selle is a fictitious bicycle saddle E-Commerce site created using the Django
 
 ## User Experience (UX)
 ### Initial Discussion
-La Selle was created, 
+La Selle was created to accelerate product sales and create greater branding exposure for the saddle manufacturer "La Selle".  
  
 
 ### User Stories
-A full list of user stories with documentation outlining the user stories and their respective storyboard can be found [here.](https://github.com/users/DavidUWL/projects/1/views/1?pane=info) 
+A full list of user stories with documentation outlining the user stories and their respective storyboard can be found [here.](https://github.com/users/DavidUWL/projects/2/views/1?layout=table&pane=info) 
 <br>
-If the README does not open, it can be located with the image below. 
+If the project README does not open, it can be accessed via the button below. 
 <br>
-![README button location](therestaurant/static/home/images/README/story_board.png) 
+![README button location](readme_images/story_board.png) 
 
 
 ## Design
-With restaurant website designs, minimalist designs typically work best. Visually striking imagery with minimal text usually provides streamlined user experiences and gives elegance to the page. Using the Django Framework, all pages will be an extension of the homepage and as such have consistency. 
+Market research on other competitors in this domain has led me to a consistent color scheme/design that has roots in the product itself. A simple slightly rounded black and white page allows the products to be the centerpiece for catching the eye. As the products do not contain colour or straight corners, including either of these in the design would make the UX slightly jarring when moving across multiple products. Small uses of straight corners or colour allows the user to be strongly guided through the order and purchasing process. 
 
 ## Wireframes
 
-### Homepage
-![Home Page Wireframe](therestaurant/static/home/images/README/home_page.png) <br>
-* With the homepage above, I wanted a large striking hero image with strong colours to set the tone for the website. With a short succinct lead line and tagline for the customer to remember. A call to action below this to book a table. 
-A navbar above containing the brand that will link to the homepage. The navbar will expand on mobile into a dropdown. A footer at the bottom of the page that simply links to the restaurant's socials. The homepage's structure also lends itself to other uses, like confirming a user's booking, or logging in/logging out. 
+<details>
+  <summary>
+  Click to expand homepage.
+  </summary>
 
-### Book Table
-![Book Table Wireframe](therestaurant/static/home/images/README/book_table.png)
-* With the book table page, there is simply one call to action here, the booking form. A streamlined booking page lends itself to the user not being distracted by any other on-screen details and focusing on the task at hand. 
+![Home Page Wireframe](readme_images/wireframes/homepage.png) 
+</details> 
+<details>
+  <summary>
+  Click to expand all products page.
+  </summary>
 
-### View Bookings
-![view bookings wireframe](therestaurant/static/home/images/README/view_bookings.png)
-* The view bookings page will return a list of the user's bookings and render them within a table. on the right of this, there will be two buttons that will allow the user to cancel or amend their booking. With mobile, this will be responsive and scrollable. 
+![all products Wireframe](readme_images/wireframes/multi_products.png)
+</details> 
+<details>
+  <summary>
+  Click to expand product details page.
+  </summary>
+  
+![product details Wireframe](readme_images/wireframes/product_details_page.png)
+</details>
+<details>
+  <summary>
+  Click to expand offcanvas sidebar cart.
+  </summary>
+  
+![cart offcanvas Wireframe](readme_images/wireframes/offcanvas_sidebar.png)
+</details>
+<details>
+  <summary>
+  Click to expand checkout cart page.
+  </summary>
+  
+![checkout cart Wireframe](readme_images/wireframes/checkout_cart.png)
+</details>
+<details>
+  <summary>
+  Click to expand checkout delivery and payment page.
+  </summary>
+  
+![checkout delivery Wireframe](readme_images/wireframes/checkout_delivery_payment.png)
+</details>
+<details>
+  <summary>
+  Click to expand checkout success page.
+  </summary>
+  
+![checkout success Wireframe](readme_images/wireframes/checkout_success.png)
+</details>
+<details>
+  <summary>
+  Click to expand the user profile page.
+  </summary>
+  
+![user profile Wireframe](readme_images/wireframes/my_profile.png)
+</details>
 
-### Menu 
-![Menu Wireframe](therestaurant/static/home/images/README/Menu.png)
-* The menu page will render a table of menu entries and their descriptions in a table format.
 
 ## Database Schema 
-A relational database was used for this project, as it would best suit the needs of the project. The schema below was created using [Figma.](https://www.figma.com) <br>
+A relational database was used for this project as it would best suit the needs of site. The schema below was created using [DbVisualiser.](https://www.dbvis.com/) <br>
 _For more information on the User table/objects please refer to the_ [AllAuth Documentation.](https://docs.allauth.org/en/latest/index.html)
 <br>
+<details>
+  <summary>
+  Click to expand database schema.
+  </summary>
 
-* Columns and their respective keys are outlined with the --> and <-- arrows. 
-* Columns have their names and attributed types outlined. 
+![A database schema](readme_images/schema/schema_pk_only.svg)
+_For a high res full table schema_ [click here](readme_images/schema/full_tables.svg)
+</details>
 
-![A database schema](therestaurant/static/home/images/README/schema.png)
 
 ## Color Palette 
-![Color Palette](therestaurant/static/home/images/README/color_palette.png)
-* The color palette for this project was derived from the colors in the hero image. I felt that consistency between the two would be quite visually pleasing, and the colours were strong. Some issues between text colors and the hero image arose due to containing both black and white. This was contrasted by adding a background colour and modifying opacity with certain elements. 
+![Color Palette](readme_images/site-palette.svg)
+* The color palette for this project was created to be quite minimalist and match the tones of the products being sold. A mix of bootstraps built in class colours were used lightly across elements to give them some extra pop on the page, however - generally, colour was kept to a minimum. 
 
 ## Typography 
 The
-[Playfair Display](https://fonts.google.com/specimen/Playfair+Display?query=playfair+display)
-Google Font was used for the text in this project, suiting the minimalist design with its straight edging and thicker style. Relying on a standard Serif font as a backup if the Google font becomes unavailable. 
+[Orbitron](https://fonts.google.com/specimen/Orbitron?query=orbitron)
+Google Font was used for the text in this project, suiting the minimalist design with its mixture of straight and rounded edges/cornering. Relying on a standard sans-Serif font as a backup if the Google font becomes unavailable. <br>
+Bootstrap 5's "Native Font Stack" was used for the bread and butter text of the website as it is [dynamic based on the viewing device](https://getbootstrap.com/docs/5.0/content/reboot/#native-font-stack). 
 
 ## Features By Page
-
+_Each Page feature section has been formatted as a dropdown for image tidiness, please click on them to expand the dropdown._
 ### Home page
-![Dynamic nav bar login](therestaurant/static/home/images/README/login.png)<br>
-![Dynamic nav bar logout](therestaurant/static/home/images/README/logout.png)
-![Dynamic nav bar mobile](therestaurant/static/home/images/README/logout_mobile.png)
+<details>
+  <summary>
+  The home page's Navbar is dynamic based on the login state of the user. Users will not be able to view their profile or checkout until they are authenticated.
+  </summary>
 
-* The home page's Navbar is dynamic based on the login state of the user. Users will not be able to view their bookings until they are authenticated. 
+  ![Dynamic nav bar login](readme_images/features/home/navbar_login.png)
+  ![Dynamic nav bar logout](readme_images/features/home/navbar_logout.png)
+  ![Dynamic nav bar mobile](readme_images/features/home/navbar_mobile.png)
+  ![Dynamic nav bar mobile expanded](readme_images/features/home/navbar_mobile_expanded.png)
+</details>
+
+<details>
+  <summary>
+  Toasts will display depending on the actions of the user, providing dynamic success or error messages. 
+  </summary>
+
+  ![toasts](readme_images/features/home/timestamped_toasts.png)
+  ![toasts](readme_images/features/home/toasts_error.png)
+</details>
+
+<details>
+  <summary>
+  A product search bar has been included that will search both product name and its description for your keywords.
+  </summary>
+
+  ![Search bar](readme_images/features/home/search_bar.png)
+</details>
+
 <hr>
 
-### Booking a Table
-![Book table page](therestaurant/static/home/images/README/book_live_login.png)
-![Booking form desktop](therestaurant/static/home/images/README/book_live.png)
-![booking form mobile](therestaurant/static/home/images/README/book_live_mobile.png)
-* The Reservation page is dynamic depending on the authentication state, if the user is not logged in, they will be prompted to either login or register. Once they are authenticated, they will be redirected to the homepage and will receive the "Book Table" call to action.
-* Once authenticated, the user is prompted with their booking form. This consists of the standard fields which include a calendar popout for the date field and dropdowns for the times and covers. 
+### Products
+
+<details>
+  <summary>
+    The header bar present on each page is dynamic based on the highest discount value assigned to a product in the products table. If a product is added with a discount of 20% to the products table, this would be automatically reflected in the banner. <br>
+    The banner can be clicked and will return only products that have discount values assigned to them.
+  </summary>
+
+  ![Discount header bar](readme_images/features/products/discount_bar.png)
+</details>
+
+<details>
+  <summary>
+    Products with discounts assigned to them will have their regular price and their calculated discount price displayed. <br>
+    Each product has their Category/subcategory/technology rendered below the price along with the product rating.
+    Each of these categories can be clicked and will return all products of the same tier. 
+  </summary>
+
+  ![Discount pricing and category search](readme_images/features/products/dynamic_discount_category_search.png)
+</details>
+
+<details>
+  <summary>
+    A "return to top" button has been included in the general products page that will allow the user to return to the top of the page quickly. 
+  </summary>
+
+  ![Return to top button](readme_images/features/products/return_button.png)
+</details>
+
+<details>
+  <summary>
+    A "Sort By" dropdown feature has been implemented to allow quicker searching by multiple product dimensions.
+  </summary>
+
+  ![Sort by feature](readme_images/features/products/sort_by.png)
+</details>
 <hr>
 
-### Viewing the Menu
-![Menu Desktop](therestaurant/static/home/images/README/menu_live.png)
-![Menu mobile](therestaurant/static/home/images/README/menu_live_mobile.png)
-* The menu will render and will be responsive on mobile. Although this is data from a database, I wanted this to be as close to a menu's looks while being simple. 
+### Product details
+
+<details>
+  <summary>
+
+  </summary>
+
+  ![Discount header bar](readme_images/features/products/discount_bar.png)
+</details>
+
+<details>
+  <summary>
+
+  </summary>
+
+  ![Discount pricing and category search](readme_images/features/products/dynamic_discount_category_search.png)
+</details>
+
+<details>
+  <summary>
+ 
+  </summary>
+
+  ![Return to top button](readme_images/features/products/return_button.png)
+</details>
+
 <hr>
 
-### Viewing User Bookings
-![User bookings desktop](therestaurant/static/home/images/README/view_bookings_live.png)
-![User bookings mobile](therestaurant/static/home/images/README/view_bookings_mobile.png)
-* The view bookings panel can only be accessed when authenticated, users can cancel their associated booking or amend the details contained in it. 
-* Depending on viewports, the table will be horizontally scrollable for accessibility. 
-* If the date is in the past (If the date is before today's date EG: booking was made for 11/11/2023 vs viewing on 12/11/2023), the cancel/amend buttons will be disabled. 
-<hr>
+<details>
+  <summary>
 
-### Admin Panel - Reservations
-![admin panel reservation](therestaurant/static/home/images/README/admin_panel_reservations.png)
-![admin panel reservation single](therestaurant/static/home/images/README/admin_panel_reservation_single.png)
-* Within the admin panel, the admin will be able to manage their bookings. All bookings will be returned within the "Reservations" panel. When a booking is made, there is logic that will select a table based on availability and assign it to the booking. 
-* The reservations will be returned with the date, time, and table as their name. 
-* Changes can be made to the reservation here by the admin if required. 
-  * As a secondary note, the Menu Items can also be modified within their respective admin 
-  section also. 
-<hr>
+  </summary>
 
-#### Defensive Design
+  ![Sort by feature](readme_images/features/products/sort_by.png)
+</details>
+
+
+### Cart
+
+<details>
+  <summary>
+    Users will only be able to click through to the checkout when authenticated.
+  </summary>
+
+  ![Authenticate only cart](readme_images/features/cart/authenticate_cart.png)
+</details>
+
+<details>
+  <summary>
+    The users cart is stored in the browser session and will persist until session data has been cleared from the site. This setup prevents extra load being added to the database. 
+  </summary>
+
+  ![Session stored in cart](readme_images/features/cart/session_cart.png)
+</details>
+
+<details>
+  <summary>
+    The cart page allows modifications of the users items in the cart, including adding or removing quantitys/items.
+  </summary>
+
+  ![Return to top button](readme_images/features/cart/update_remove_cart.png)
+</details>
+
+<details>
+  <summary>
+
+  </summary>
+
+  ![Sort by feature](readme_images/features/products/sort_by.png)
+</details>
+
+
+### Defensive Design
 * As mentioned above, users will not be able to access certain pages of the website without being authenticated. With both a mix of the dynamic navbar and Django's templating language, the option will not be given to the user - but if the URL is entered manually the user will be prompted to sign in or register regardless. 
 <hr>
 
-#### Table Automation 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Table Automation 
 
 ```python 
 def get_available_table(selected_date, selected_time, covers):

@@ -71,7 +71,7 @@ def all_products(request):
 
     context = {
         'products': products,
-        'search-term': query,
+        'search_term': query,
         'current_categories': categories,
         'current_subcategories': subcategories,
         'current_sorting': current_sorting,
