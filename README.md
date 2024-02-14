@@ -335,18 +335,18 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
 
 <details>
   <summary>
-    
+    Users will be sent an email on signup to verify their account via a unique URL (Account verifcation is disabled for this project - the  email is still sent however.)
   </summary>
 
-  ![Signup email]()
+  ![Signup email](readme_images/features/emails/email_confirmation.png)
 </details>
 
 <details>
   <summary>
-
+    Users will receive an order confirmation email containing a brief description of their shipping details and total costs.
   </summary>
 
-  ![Order confirmation email]()
+  ![Order confirmation email](readme_images/features/emails/email_order_confirmation.png)
 </details>
 
 
