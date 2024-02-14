@@ -7,7 +7,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from ratings.models import UserRating
 
-
+@login_required
 def view_profile(request):
     user = request.user
 

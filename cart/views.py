@@ -7,8 +7,9 @@ from django.shortcuts import (
 )
 from django.contrib import messages
 from products.models import Product
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def view_cart(request):
     return render(request, 'cart/cart.html')
 

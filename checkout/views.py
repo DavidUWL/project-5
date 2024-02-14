@@ -10,6 +10,7 @@ from django.shortcuts import (
 from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from cart.contexts import cart_contents
 from profiles.forms import UserProfileForm
 from profiles.models import UserProfile
@@ -33,7 +34,7 @@ def cache_checkout_data(request):
         messages.error(request, 'We could not process your request.')
         return HttpResponse(content=e, status=400)
 
-
+@login_required
 def view_checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -145,7 +146,7 @@ def view_checkout(request):
 
     return render(request, 'checkout/checkout.html', context)
 
-
+@login_required
 def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     purchase = get_object_or_404(Purchase, order_number=order_number)
