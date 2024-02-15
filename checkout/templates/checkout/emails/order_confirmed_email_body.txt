@@ -2,7 +2,7 @@ Hi {{ order.full_name }},
 
 Thank you for ordering with La Selle. 
 
-Your Order Date: {{ order.order_date }}
+Your Order Date: {{ order.date }}
 Order #: {{ order.order_number }}
 
 Order Total: €{{ order.order_total }}
