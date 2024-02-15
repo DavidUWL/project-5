@@ -290,6 +290,42 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
   ![Stripe payments spinner](readme_images/features/checkout/checkout_spinner.png)
 </details>
 
+### Stripe Webhooks
+Stripe webhooks were implemented in parallel with the payments integration. The webhook allows for added failsafes to payments when communication issues may arise, or database errors caused at the time of payment. <br>
+A webhook provides direct feedback from the stripe API that a payment has been completed or failed leading to faster response times to orders or issues. <br>
+The webhook response can also be used to trigger event specific functions like triggering an order confirmation email for a customer. 
+<details>
+  <summary>
+    Click to expand Local webhook.
+  </summary>
+
+  ![Local webhook](readme_images/features/webhooks/local_webhook.png)
+</details>
+
+<details>
+  <summary>
+    Click to expand Local webhook order details.
+  </summary>
+
+  ![Local webhook details](readme_images/features/webhooks/local_webhook_details.png)
+</details>
+
+<details>
+  <summary>
+    Click to expand deployed webhook.
+  </summary>
+
+  ![Deployed webhook](readme_images/features/webhooks/deployed_webhook.png)
+</details>
+
+<details>
+  <summary>
+    Click to expand deployed webhook order details.
+  </summary>
+
+  ![Deployed webhook details](readme_images/features/webhooks/deployed_webhook_details.png)
+</details>
+
 <hr>
 
 ### Accounts
@@ -341,7 +377,7 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
 <hr>
 
 ### Emails
-
+Gmail was used for the deployed site as an SMTP server for sending emails to customers for both account related information and for order confirmations. The setup documentation for this can be found [here.](https://support.google.com/a/answer/176600?hl=en)
 <details>
   <summary>
     Users will be sent an email on signup to verify their account via a unique URL (Account verifcation is disabled for this project - the  email is still sent however.)
