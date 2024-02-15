@@ -50,6 +50,8 @@ Market research on other competitors in this domain has led me to a consistent c
   <summary>
   Click to expand homepage.
   </summary>
+  
+  * The homepage contains two main CTA's, including the discount banner and the button below the pages body tagline to view all products in the store. It will also contain functional elements like a navigation bar, and its associated search bar. All subsequent pages hereafter are extensions of this page minus the the body tagline and background image. 
 
 ![Home Page Wireframe](readme_images/wireframes/homepage.png) 
 </details> 
@@ -58,6 +60,8 @@ Market research on other competitors in this domain has led me to a consistent c
   Click to expand all products page.
   </summary>
 
+  * The all products page will render all products in the database and print their associated categories/ratings/price below. There will be a functional sort by element to sort the products by their dimensions. A back to top button will be in the bottom right which will bring the user back to the top of the page. 
+
 ![all products Wireframe](readme_images/wireframes/multi_products.png)
 </details> 
 <details>
@@ -65,6 +69,8 @@ Market research on other competitors in this domain has led me to a consistent c
   Click to expand product details page.
   </summary>
   
+  * The product details page will contain the same product elements as the all products page, but include a description below, with a ratings section and size/quantity selectors. A simple CTA "buy" button will be below this. 
+
 ![product details Wireframe](readme_images/wireframes/product_details_page.png)
 </details>
 <details>
@@ -72,6 +78,8 @@ Market research on other competitors in this domain has led me to a consistent c
   Click to expand offcanvas sidebar cart.
   </summary>
   
+  * If the shopping cart button is clicked, it will open an offcanvas element containing all the elements added to the cart during the users session. This will provide better UX for the customer instead of constant popups on the screen which may be distracting. A "checkout" CTA will be present. 
+
 ![cart offcanvas Wireframe](readme_images/wireframes/offcanvas_sidebar.png)
 </details>
 <details>
@@ -79,6 +87,8 @@ Market research on other competitors in this domain has led me to a consistent c
   Click to expand checkout cart page.
   </summary>
   
+  * Similiar to the offcanvas shopping cart, all items in the user session will be rendered, with a second quantity selector and item prices. Below will be delivery/total/grand total. Two buttons below will take the user back to the products page, or continue to the checkout.  
+
 ![checkout cart Wireframe](readme_images/wireframes/checkout_cart.png)
 </details>
 <details>
@@ -86,6 +96,8 @@ Market research on other competitors in this domain has led me to a consistent c
   Click to expand checkout delivery and payment page.
   </summary>
   
+  * The checkout will contain a form to submit the users shipping information, with a second render of the products added to the cart and the totals ect. Below will be a stripe payment section and a payment confirmation button.  
+
 ![checkout delivery Wireframe](readme_images/wireframes/checkout_delivery_payment.png)
 </details>
 <details>
@@ -93,6 +105,8 @@ Market research on other competitors in this domain has led me to a consistent c
   Click to expand checkout success page.
   </summary>
   
+  * The checkout success page will render two tables, containing the confirmed order and the delivery details. 
+
 ![checkout success Wireframe](readme_images/wireframes/checkout_success.png)
 </details>
 <details>
@@ -100,6 +114,8 @@ Market research on other competitors in this domain has led me to a consistent c
   Click to expand the user profile page.
   </summary>
   
+   * The user profile will contain a form that allows the user to update or delete their shipping details, view their previous orders/ratings/product wishlist. 
+
 ![user profile Wireframe](readme_images/wireframes/my_profile.png)
 </details>
 
@@ -125,7 +141,7 @@ _For a high res full table schema_ [click here](readme_images/schema/full_tables
 ## Typography 
 The
 [Orbitron](https://fonts.google.com/specimen/Orbitron?query=orbitron)
-Google Font was used for the text in this project, suiting the minimalist design with its mixture of straight and rounded edges/cornering. Relying on a standard sans-Serif font as a backup if the Google font becomes unavailable. <br>
+Google Font was used for the logo text in this project, suiting the minimalist design with its mixture of straight and rounded edges/cornering. Relying on a standard sans-Serif font as a backup if the Google font becomes unavailable. <br>
 Bootstrap 5's "Native Font Stack" was used for the bread and butter text of the website as it is [dynamic based on the viewing device](https://getbootstrap.com/docs/5.0/content/reboot/#native-font-stack). 
 
 ## Features By Page
@@ -397,7 +413,6 @@ Gmail was used for the deployed site as an SMTP server for sending emails to cus
 
 <hr>
 
-
 ### Defensive Design
 * Users must be validated to access any part of the site that requires authentication, including the cart/checkout/profile pages. <br>
 * A custom 404 page has been implemented that will be returned if any page/records cannot be found.
@@ -407,62 +422,21 @@ Gmail was used for the deployed site as an SMTP server for sending emails to cus
 * User input fields have either custom validation written for values, or inherited required status from their database models. 
 ![Form validation required](readme_images/features/defensive_design/form_required_validation.png)
 ![Quantity validation](readme_images/features/defensive_design/quantity_validation.png)
-### Table Automation 
 
-```python 
-def get_available_table(selected_date, selected_time, covers):
-    available_tables = Table.objects.filter(table_covers__gte=covers)
-    
-    for table in available_tables:
-        if not Reservation.objects.filter(table=table, date=selected_date, time=selected_time).exists():
-            return table
-
-    return None  # No available table found
-
-``` 
-
-* Within the view, a function was created that will return all values from "Table" which have been pre-created using a [management command](#management-command). The function will then take the date and time and check whether a record with the provided parameters exists. If it does not exist it will assign a table, if it is unable to find a table it will return nothing. 
-<hr>
-
-#### Management Command 
-```python
-class Command(BaseCommand):
-    help = 'Creates tables with table number and covers.'
-
-    def handle(self, *args, **kwargs):
-        tables = [
-            Table(table_number=1, table_covers=1),
-            Table(table_number=2, table_covers=1),
-            Table(table_number=3, table_covers=1),
-            Table(table_number=4, table_covers=1),
-            Table(table_number=5, table_covers=1),
-            Table(table_number=6, table_covers=2),
-            Table(table_number=7, table_covers=2),
-            Table(table_number=8, table_covers=4),
-            Table(table_number=9, table_covers=4),
-            Table(table_number=10, table_covers=4)
-        ]
-
-        for table in tables:
-            table.save()
-
-        self.stdout.write(self.style.SUCCESS('Successfully created 10 Table objects.'))
-```
-
-* A management command was created that would allow the restaurant to modify their table number and covers as needed for the table automation. 
 <hr>
 
 ### Future Implentations
-* For this project, as emails were made optional for signup, i deemed the email booking as not having enough value to implement on this epic. However, i do want to implement this in the future and make validated emails mandatory on signup.
-* I would like to refactor the table automation so that larger tables do not get occupied by small cover numbers EG 1 person at a table that could seat 4. 
-* I would like to redesign the navbar for mobile devices so that a sidebar overlay is used instead of a dropdown as some elements overlay over the dropdown nav element. 
-* I would like to create a seating system that uses the table objects as a primary key to create an all in one system that owner managers could use to have a granular view of their tables daily (similar to the restaurant's view in opentable). 
-* I Would like to implement some basic query functions in the admin panel that would allow the owner to query their reservations in the front end based on dynamic criteria EG: name, Date, covers ect. 
+1. A user story has already been included into the user story backlog, i would like the super-user to have a dedicated front end page that allows them to add products to the database when needed. Currently the user is able to do this via the admin panel, however i would prefer it to be contained within the frontend of the site with site branding + colouring ect. 
+2. In tandem with the user reviews, i would like a numbered rating system that is submitted alongside this. The product ratings would then be amalgamated to form the ratings average for each product instead of being submitted by the super-user when the product is created. 
+3. A product wishlist implented onto each product and saved to the users profile, this could then be retrieved via the profile page. 
 
 ## Technologies Used
 
 ### Languages & Packages Used 
-Languages HTML, CSS, Python.  
+ ![HTML badge](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)
+ ![CSS badge](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)
+ ![Python badge](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+ ![Javasscript badge](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)   
 
 * packages/Frameworks/Libraries:
   * Django Framework - A Full Stack Python web framework.
@@ -470,141 +444,31 @@ Languages HTML, CSS, Python.
   * Jquery - A javascript library used for DOM manipulation. **
   * Font Awesome - A CDN For iconography.
   * AllAuth - Used for User authentication and registration.
-  * White Noise - used for deployment to Heroku and serving static files. 
   * Gunicorn - A Python WSGI HTTP server that aids in deployment.
   * psycopg2-binary - A postgreSQL adapter for Python. 
-  * django-money - See below.
-  * python-decouple - See below.
   * dj-database-url - For parsing the hosted SQL server URL. 
+  * Stripe - For secure integrated payment systems.
+  * S3transfer - For backend configuration of the AWS s3 Bucket.
+  * python-dotenv - Used for .env variable imports. 
+  * Crispy forms - For quicker/easier form styling. 
 <br>
 
 ** _As of Bootstrap v5, jquery is no longer required._
-
-### Package notes
-
-
-* [python-decouple](https://pypi.org/project/python-decouple/) was used during the development of this project to experiment with the separation of configuration settings and code. It also made it easier to carry out version control by having confidence that my environment variables were not exposed. 
-```python
-    else:
-        DATABASES = {
-            'default': dj_database_url.parse(config('DATABASE_URL'))
-        }
-```
-
-* [django-money](https://pypi.org/project/django-money/) is a cool package that allows distinct configuration for Django model fields that will contain currencies. When the currency is defined, the corresponding symbol will be rendered.  
-  * This package also allows for records in the same column to return with multiple currency symbols which can be chosen from by simply importing the package.  
-
-```python
-price = MoneyField(max_digits=14, decimal_places=2, default_currency='EUR')
-```
-![Django money currency fields](therestaurant/static/home/images/README/django_money.png)
-
 
 ## Database tools
 * The development environment used the inbuilt SQLite3 database. 
 * PostgreSQL and an externally hosted SQL Server by 
 [ElephantSQL.](https://www.elephantsql.com/docs/index.html)
 ### Programs Used
-* Github was used as a repository to store website files and code. <br>
-* Gitpod used as the coding environment with git for version control. <br>
+* Github was used as a repository to store website files and code. 
+* Amazon AWS s3 was used for image storage and serving images. 
+* Gitpod used as the coding environment with git for version control.
 * Balsamic For wireframes. 
 * Google Dev tools for development and testing responsiveness. 
 * [DbVisualiser.](https://www.dbvis.com/) 
   for creating the Database Schema's. 
-* [Site Palete](https://chromewebstore.google.com/detail/site-palette/pekhihjiehdafocefoimckjpbkegknoh?hl=en-GB)
+* [Site Palette](https://chromewebstore.google.com/detail/site-palette/pekhihjiehdafocefoimckjpbkegknoh?hl=en-GB)
   to create the website colour palette image. 
-
-
-## Deployment & Local Development
-
-### Deployment
-#### ElephantSQL provided the hosting and backend for our SQL database.<br>
-The database can be created by the following: <br>
-  1. Create a new instance in your ElephantSQL dashboard, this can be found in the top right.
-  2. Give your instance a name and choose the region closest to you.
-  3. Click create instance in the bottom right.
-  4. Copy the URl from your dashboard for the new database. 
-
-#### Heroku Provided the web hosting for our application.
-The Heroku App can be created by the following: <br>
-  1. From your Heroku Dashboard, click "new" in the top right and create a new app.
-  2. Give your App a unique name and click Create App. 
-  3. Once created, open the app settings and select config var - create a new variable called `DATABASE_URL` and give it the value of the ElephantSQL URL you copied in step 4 previously.
-  
-#### Preparing your Workspace for Deployment
-  1. install dj_database_url and psycopg2 .
-  ```python
-  pip3 install dj_database_url psycopg2 gunicorn whitenoise
-  ```
-  2. update your requirements.txt file to reflect your new installs.
-  ```python
-  pip3 freeze > requirements.txt 
-  ```
-  3. Open your .env file and insert your `DATABASE_URL` variable and its URL value(From step 4 in ElephantSQL steps).
-  4. In settings.py Under your OS import - write `import dj_database_url`.
-  5. Find your DATABASES variable in settings.py and comment it out, replacing it with the below: 
-  ```python 
-  DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-  }
-  ```
-  6. Run your server from the terminal to verify your database connection with `python3 manage.py runserver`
-
-  7. Create your superuser with the terminal command : `python3 manage.py createsuperuser`
-  8. View your new superuser within elephant SQL by querying the auth_user table. 
-  9. modify your database pointers in settings.py to the below:
-  ```python
-  if DEBUG:
-      DATABASES = {
-      'default': {
-      'ENGINE': 'django.db.backends.sqlite3',
-      'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-          }
-        }
-  else:
-      DATABASES = {
-          'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-      }
-  ```
-  10. If your `DEBUG` variable in settings.py is set to `True` you will now use the SQLite database for development, if false you will be working with the deployed database.
-  11. Create a `Procfile` (capital P) in your root directory and add the below line of code to serve your app via gunicorn: 
-  ```python
-  web: gunicorn YOUR_APP_NAME.wsgi:application
-  ``` 
-  12. Add the below code into your middleware config in settings.py to configure `whitenoise` and allow it to serve your static files to Heroku: 
-  ```python
-  MIDDLEWARE = [
-    # ...
-    "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-    # ...
-  ]
-  
-  STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-  ```
-
-  13. add the below code to your allowed hosts and modify the Heroku URL to your deployed URL: 
-  ```python
-  if DEBUG:
-    ALLOWED_HOSTS = ['8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io']
-  else: 
-    ALLOWED_HOSTS = ['la-selle-45cacae9f212.herokuapp.com']
-  ``` 
-  14.  Enable Automatic deployments on Heroku within the deploy section of your app. Connect via your GitHub credentials and search for your current working repo and connect, you will now be able to select automatic deployments below. 
-  15. Save your current changes and add a commit message and push to GitHub.
-
-## Forking/Cloning 
-To create a fork for this repository: 
-* Navigate to the url - https://github.com/DavidUWL/project-5
-  * In the top right corner, click on the Fork dropdown. 
-  * Create a new fork
-  * Name the repository and/or give it a description - Click create fork. 
-* You have now created a fork of this repository! 
-To create a clone of this repository:
-* Navigate to the url - https://github.com/DavidUWL/project-5
-  * Click on the "code" button and select which format you would like to clone with and copy that link.
-  * In your Terminal window of whichever IDE you use, navigate to the whichever directory you want to clone the project to. 
-  * type into the terminal "git clone", you have now cloned the project! 
 
 
 ## Testing
