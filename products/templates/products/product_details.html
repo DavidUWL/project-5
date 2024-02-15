@@ -87,8 +87,8 @@
                   </button>
                 </div>
 
-                <input class="form-control qty_input" type="number" name="quantity" value="1" min="1" max="99"
-                  data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}" class="form-control text-center"
+                <input class="form-control qty_input text-center" type="number" name="quantity" value="1" min="1" max="99"
+                  data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}"
                   placeholder="1" aria-label="quantity-field">
 
                 <div class="input-group-append">
@@ -110,7 +110,6 @@
       </div>
     </div>
   </div>
-
 </div>
 {% endblock %}
 

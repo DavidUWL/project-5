@@ -24,38 +24,40 @@
         <div class="purchase-completed-table">
           <table class="table table-bg-none border table-hover">
             <thead class="bg-secondary logo-font">
-              <th scope="col" colspan="3" class="text-center">Purchase Details</th>
+              <tr>
+                <th colspan="3" class="text-center table-dark">Purchase Details</th>
+              </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">Purchase #:</th>
-                <th scope="row" colspan="2">{{ purchase.order_number }}</th>
+                <td>Purchase #:</td>
+                <td colspan="2">{{ purchase.order_number }}</td>
               </tr>
               <tr>
-                <th scope="row">Order Date:</th>
-                <th scope="row" colspan="2">{{ purchase.date }}</th>
+                <td>Order Date:</td>
+                <td colspan="2">{{ purchase.date }}</td>
               </tr>
               <tr>
-                <th scope="row" colspan="3" class="text-center text-decoration-underline logo-font">Items</th>
+                <td colspan="3" class="text-center text-decoration-underline logo-font table-dark">Items</td>
               </tr>
               {% for item in purchase.lineitems.all %}
               <tr>
-                <th scope="row">{{ item.product.name }}</th>
-                <th scope="row">{% if item.product.size %}{{ item.product.size }}{% else %}Size N/A{% endif %}</th>
-                <th scope="row">{{ item.quantity }} X €{{ item.product.price|intcomma }}</th>
+                <td>{{ item.product.name }}</td>
+                <td>{% if item.product.size %}{{ item.product.size }}{% else %}Size N/A{% endif %}</td>
+                <td>{{ item.quantity }} X €{{ item.product.price|intcomma }}</td>
               </tr>
               {% endfor %}
               <tr>
-                <th scope="row">Purchase total:</th>
-                <th scope="row" colspan="2" class="text-center">€{{ purchase.order_total|intcomma }}</th>
+                <td>Purchase total:</td>
+                <td colspan="2" class="text-center">€{{ purchase.order_total|intcomma }}</td>
               </tr>
               <tr>
-                <th scope="row">Delivery Cost:</th>
-                <th scope="row" colspan="2" class="text-center">€{{ purchase.delivery_cost|intcomma }}</th>
+                <td>Delivery Cost:</td>
+                <td colspan="2" class="text-center">€{{ purchase.delivery_cost|intcomma }}</td>
               </tr>
               <tr>
-                <th scope="row">Grand Total:</th>
-                <th scope="row" colspan="2" class="text-center">€{{ purchase.grand_total|intcomma }}</th>
+                <td>Grand Total:</td>
+                <td colspan="2" class="text-center">€{{ purchase.grand_total|intcomma }}</td>
               </tr>
             </tbody>
           </table>
@@ -64,39 +66,43 @@
       <div class="col-12 col-lg-5">
         <div class="purchase-completed-table">
           <table class="table table-bg-none border table-hover">
-            <thead class="bg-secondary logo-font">
-              <th scope="col" colspan="3" class="text-center">Billing & Delivery</th>
+            <thead class="table-dark logo-font">
+              <tr>
+                <th scope="row" class="text-center">Billing & Delivery</th>
+              </tr>
             </thead>
             <tbody>
-              <th scope="row" class="text-center">{{ purchase.full_name }}</th>
               <tr>
-                <th scope="row" class="text-center">{{ purchase.email }}</th>
+                <td class="text-center">{{ purchase.full_name }}</td>
               </tr>
               <tr>
-                <th scope="row" class="text-center">{{ purchase.phone_number }}</th>
+                <td class="text-center">{{ purchase.email }}</td>
               </tr>
               <tr>
-                <th scope="row" class="text-center">{{ purchase.country }}</th>
+                <td class="text-center">{{ purchase.phone_number }}</td>
               </tr>
               <tr>
-              {% if purchase.county %}
-                <th scope="row" class="text-center">{{ purchase.county }}</th>
+                <td class="text-center">{{ purchase.country }}</td>
+              </tr>
+              <tr>
+                {% if purchase.county %}
+                <td class="text-center">{{ purchase.county }}</td>
               </tr>
               {% endif %}
               <tr>
-                <th scope="row" class="text-center">{{ purchase.town_or_city }}</th>
+                <td class="text-center">{{ purchase.town_or_city }}</td>
               </tr>
               <tr>
                 {% if purchase.postcode %}
-                <th scope="row" class="text-center">{{ purchase.postcode }}</th>
+                <td class="text-center">{{ purchase.postcode }}</td>
                 {% endif %}
               </tr>
               <tr>
-                <th scope="row" class="text-center">{{ purchase.street_address1 }}</th>
+                <td class="text-center">{{ purchase.street_address1 }}</td>
               </tr>
               {% if purchase.street_address2 %}
               <tr>
-                <th scope="row" class="text-center">{{ purchase.street_address2 }}</th>
+                <td class="text-center">{{ purchase.street_address2 }}</td>
               </tr>
               {% endif %}
             </tbody>

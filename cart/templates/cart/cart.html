@@ -4,13 +4,6 @@
 
 
 {% block page_header %}
-<!-- <div class="container header-container">
-  <div class="row">
-    <div class="col">
-
-    </div>
-  </div>
-</div> -->
 {% endblock %}
 
 {% block content %}
@@ -41,7 +34,7 @@
               {% for item in cart_items %}
               <tr>
                 <td class="py-3 w-25">
-                  <img src="{{item.product.image.url }}" class="img-fluid">
+                  <img alt="product image" src="{{item.product.image.url }}" class="img-fluid">
                 </td>
                 <td class="py-2 align-top">
                   <p class="my-0 fw-bold">{{ item.product.name }}</p>
@@ -59,9 +52,9 @@
                           </button>
                         </div>
 
-                        <input class="form-control form-control-sm qty_input" type="number" name="quantity"
+                        <input class="form-control text-center form-control-sm qty_input" type="number" name="quantity"
                           value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.item_id }}"
-                          id="id_qty_{{ item.item_id }}" class="form-control text-center" placeholder="1"
+                          id="id_qty_{{ item.item_id }}" placeholder="1"
                           aria-label="quantity-field">
 
                         <div class="input-group-append">
@@ -149,12 +142,13 @@
       </div>
     </div>
   </div>
+</div>
   {% endblock %}
 
   {% block postloadjs %}
   {{ block.super }}
   {% include 'products/includes/quantity_input_script.html' %}
-  <script type="text/javascript">
+  <script>
     $('.update-link').click(function (e) {
       let form = $(this).prev('.update-form');
       form.submit();

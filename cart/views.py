@@ -9,6 +9,7 @@ from django.contrib import messages
 from products.models import Product
 from django.contrib.auth.decorators import login_required
 
+
 @login_required
 def view_cart(request):
     return render(request, 'cart/cart.html')
@@ -31,13 +32,17 @@ def add_to_cart(request, item_id):
                 cart[item_id]['items_by_size'][size] += quantity
             else:
                 cart[item_id]['items_by_size'] = quantity
-                messages.success(request, f'{product.name} added to your cart.')
+                messages.success(
+                    request, f'{product.name} added to your cart.'
+                    )
         else:
             cart[item_id] = {'items_by_size': {size: quantity}}
     else:
         if item_id in list(cart.keys()):
             cart[item_id] += quantity
-            messages.success(request, f"{product.name}'s quantity to {cart[item_id]}.")
+            messages.success(
+                request, f"{product.name}'s quantity to {cart[item_id]}."
+                )
         else:
             cart[item_id] = quantity
             messages.success(request, f'{product.name} added to your cart.')
@@ -67,7 +72,9 @@ def adjust_cart(request, item_id):
     else:
         if quantity > 0:
             cart[item_id] = quantity
-            messages.success(request, f"{product.name}'s quantity to {cart[item_id]}.")
+            messages.success(
+                request, f"{product.name}'s quantity to {cart[item_id]}."
+                )
         else:
             cart.pop(item_id)
             messages.success(request, f"Removed {product.name} from cart.")

@@ -11,7 +11,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST" id="ratings-form">
+                <form method="POST" id="ratings-form">
                     {% csrf_token %}
                     {{ ratings_form.rating_description | as_crispy_field  }}
                     <div class="modal-footer">
@@ -21,6 +21,7 @@
                             class="btn btn-dark rounded-0 align-items-center logo-font">
                             Submit review
                         </button>
+                    </div>
                 </form>
             </div>
         </div>

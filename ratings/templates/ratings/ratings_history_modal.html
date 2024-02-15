@@ -10,11 +10,11 @@
     </div>
 </div>
 
-<div class="modal fade" id="ratingsModal" tabindex="-1" aria-labelledby="RatingsModalTable" aria-hidden="true">
+<div class="modal fade" id="ratingsModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ratingsModal">Your Ratings</h5>
+                <h5 class="modal-title">Your Ratings</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -37,7 +37,7 @@
                                             <th scope="row">{{ rating.rating_description }}</th>
                                             <th scope="row" aria-label="Delete rating">
                                                 <form method="POST" action="{% url 'delete_user_rating' rating.id %}"
-                                                    class="delete-form" id="deleteForm">
+                                                    class="delete-form">
                                                     {% csrf_token %}
                                                     <button class="border-0 bg-none ratings-delete-button" type="submit" disabled>
                                                         <i class="fa-solid fa-trash"></i>

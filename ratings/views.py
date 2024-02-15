@@ -10,7 +10,7 @@ from .models import UserRating
 
 def get_user_rating(request, product_id):
     """
-    Helper function to return and clean ratings form when called."
+    Helper function to return and clean ratings form when called."PASS
     """
     if request.method == 'POST':
         product = get_object_or_404(Product, pk=product_id)

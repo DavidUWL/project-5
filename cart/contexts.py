@@ -7,7 +7,7 @@ from products.models import Product
 def cart_contents(request):
 
     """
-    maintains and displays the cart contents" 
+    maintains and displays the cart contents"
     """
 
     cart_items = []

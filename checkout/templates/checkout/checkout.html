@@ -114,6 +114,7 @@
                                 <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
                             </label>
                             {% endif %}
+                        </div>
                     </fieldset>
                     <fieldset class="px-2">
                         <legend class="fieldset-label small px-1 w-auto">*Delivery fee: €{{ delivery|floatformat:2 }}
@@ -123,11 +124,10 @@
                         </div>
                         <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     </fieldset>
-                    <button id="submit-button" href="{% url 'view_cart' %}"
-                        class="btn btn-dark rounded-0 align-items-center logo-font">
-                        <span><small><i class="fa-solid fa-basket-shopping"></i></small></span>
-                        Confirm Order
-                    </button>
+                        <a href="{% url 'view_cart' %}" class="btn btn-dark rounded-0 align-items-center logo-font text-white text-decoration-none">
+                            <span><small><i class="fa-solid fa-basket-shopping"></i></small></span>
+                            Confirm Order
+                        </a>
                     <p class="fw-1 text-danger my-1 fw-bolder">Your card will be charged :
                         €{{ grand_total|floatformat:2}}</p>
                 </form>

@@ -34,6 +34,7 @@ def cache_checkout_data(request):
         messages.error(request, 'We could not process your request.')
         return HttpResponse(content=e, status=400)
 
+
 @login_required
 def view_checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -85,7 +86,8 @@ def view_checkout(request):
                     messages.error(
                         request,
                         (
-                            "It looks like that item isn't in our database, please try again."
+                            "It looks like that item isn't in our database, \
+                            please try again."
                         )
                     )
                     purchase.delete()
@@ -145,6 +147,7 @@ def view_checkout(request):
     }
 
     return render(request, 'checkout/checkout.html', context)
+
 
 @login_required
 def checkout_success(request, order_number):

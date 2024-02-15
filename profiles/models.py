@@ -28,6 +28,7 @@ class UserProfile(models.Model):
         super().delete(*args, **kwargs)
         UserProfile.objects.create(user=user_instance)
 
+
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:

@@ -7,6 +7,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from ratings.models import UserRating
 
+
 @login_required
 def view_profile(request):
     user = request.user
@@ -35,6 +36,7 @@ def view_profile(request):
 
     return render(request, template, context)
 
+
 @login_required
 def delete_user_profile(request):
     if request.method == 'POST':
@@ -55,6 +57,7 @@ def purchase_history(request, order_number):
 
     return render(request, template, context)
 
+
 def delete_user_rating(request, rating_id):
     if request.method == 'POST':
         user_rating = get_object_or_404(UserRating, pk=rating_id)
@@ -64,4 +67,3 @@ def delete_user_rating(request, rating_id):
     else:
         messages.warning(request, 'Deletion was not confirmed.')
     return render(request, 'profile.html')
-
