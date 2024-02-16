@@ -19,10 +19,6 @@ La Selle is a fictitious bicycle saddle E-Commerce site created using the Django
   * [Libraries & Programs Used](#libraries--programs-used)
 * [Deployment & Local Development](#deployment--local-development)
 * [Testing](#testing)
-  * [Solved Bugs](#solved-bugs)
-  * [Known Bugs](#known-bugs)
-  * [Tesing User Stories](#testing-user-stories)
-  * [Full Testing](#full-testing)
 * [Credits](#credits)
 * [Media](#media)
 * [Acknowledgments](#acknowledgments)
@@ -428,6 +424,7 @@ Gmail was used for the deployed site as an SMTP server for sending emails to cus
 1. A user story has already been included into the user story backlog, i would like the super-user to have a dedicated front end page that allows them to add products to the database when needed. Currently the user is able to do this via the admin panel, however i would prefer it to be contained within the frontend of the site with site branding + colouring ect. 
 2. In tandem with the user reviews, i would like a numbered rating system that is submitted alongside this. The product ratings would then be amalgamated to form the ratings average for each product instead of being submitted by the super-user when the product is created. 
 3. A product wishlist implented onto each product and saved to the users profile, this could then be retrieved via the profile page. 
+4. Once product ratings are implemented, i would like to refactor all of the ratings related code to be self contained within its own app for orthogonality. 
 
 ## Technologies Used
 
@@ -472,11 +469,7 @@ Gmail was used for the deployed site as an SMTP server for sending emails to cus
 
 
 ## Deployment and Local Development
-
 Please refer to [the deployment document](DEPLOYMENT.md) for relevant information on deployment and local development. 
-
-
-
 
 ## credits
 ### Content

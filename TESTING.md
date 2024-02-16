@@ -1,4 +1,30 @@
-## Testing
+# Full Project Testing 
+
+   * [Validation Testing](#validation-testing)
+      + [python](#python)
+- [Manual Testing](#manual-testing)
+   * [Base template](#base-template)
+   * [Home](#home)
+   * [Products](#products)
+      + [Multi products](#multi-products)
+      + [Product details](#product-details)
+      + [Review Modal](#review-modal)
+   * [Cart](#cart)
+   * [checkout](#checkout)
+      + [Checkout confirmation](#checkout-confirmation)
+      + [Stripe Payment](#stripe-payment)
+      + [Stripe test-card details](#stripe-test-card-details)
+         - [Checkout success](#checkout-success)
+   * [Profile ](#profile)
+      + [Order history modal](#order-history-modal)
+      + [Ratings history modal](#ratings-history-modal)
+   * [Custom 404 page](#custom-404-page)
+   * [Bugs](#bugs)
+      + [Solved Bugs](#solved-bugs)
+      + [known/unresolved bugs](#knownunresolved-bugs)
+   * [User story testing](#user-story-testing)
+
+
 
 ## Validation Testing 
 All code was passed through validation tools, namely: 
@@ -168,7 +194,7 @@ All python code adheres to pep 8 standards. Some lines are viewed as too long, h
 | Empty Cart                   | 1. Open the Shopping Cart page. <br> 2. Remove all items from the cart.                                                | Message "You have no items in your cart" is displayed, and "go back" button is available. | Pass          |
 </details>
 
-## checkout 
+## Checkout 
 
 ### Checkout confirmation
 <details>
@@ -311,7 +337,7 @@ All python code adheres to pep 8 standards. Some lines are viewed as too long, h
 | Modal Overlay Click               | 1. Open the modal. 2. Click outside the modal overlay.                                                               | The modal should be closed.                         | Pass          |
 </details>
 
-## Custom 404 page
+## Custom 404 Page
 <details>
   <summary>
     Click to expand custom 404 testing table.
@@ -332,13 +358,21 @@ All python code adheres to pep 8 standards. Some lines are viewed as too long, h
 ## Bugs
 
 ### Solved Bugs
+| BUG | FIX | COMMIT |
+|---|---|---|
+| Users could not review multiple products - limited to one review only. | Error was being caused by dependency of OneToOne model field, fixed by setting to foreign key and blank=True | [cce1505](https://github.com/DavidUWL/project-5/commit/cce15052f95f2e4112ebc2981785e5b7962b423b) |
+| Users could not leave a review, form would render but would submit an empty form on submission. | Code was refactored to create a database record within the product view instead of being contained within the ratings app, and helper functions imported. | [1a7d2d5](https://github.com/DavidUWL/project-5/commit/1a7d2d5df1df70b008089920ce13fbaf2d5ce7f1) |
+| Cart would display delivery price when empty. | Fixed by simply adding an "if/else" statement to zero the cart if there are no items. | [8531ce4](https://github.com/DavidUWL/project-5/commit/8531ce4f193cbf2d7fa5675b0ee8eff985ec1d78) |
+| Type error with calculate discount price property. | Incorrectly trying to apply decimal package math to non-decimal package converted variables. | [649df5f](https://github.com/DavidUWL/project-5/commit/649df5ff53a4158d9510960f95526d754c5ba70e) |
+| Sort options not functional. | Incorrectly calling the option value name. | [0c70ae8](https://github.com/DavidUWL/project-5/commit/0c70ae8e755962d6e1469728fcef0f89f549a119) |
 
 
 ### known/unresolved bugs 
+No known bugs at the time of writing. 
 
 
-### User story testing
-All user stories would require their tasks completed before testing their acceptance, id links to github project. Tasks 
+## User story testing
+All user stories would require their tasks completed before testing their acceptance, "id" links to github project tasks .
 
 | id | User Story | Acceptance | 
 | --- | ---------- | ---------- | 
