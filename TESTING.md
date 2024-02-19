@@ -392,3 +392,27 @@ All user stories would require their tasks completed before testing their accept
 | [#14](https://github.com/DavidUWL/project-5/issues/14)  | As an admin, I want to add or remove products without having to use the built-in admin panel. | - | 
 
 
+### Browser compatibility 
+All pages were testing on the following browsers: 
+* Google Chrome 
+* Microsoft Edge
+* Mozilla Firefox
+
+## Responsiveness 
+Reponsiveness was tested with google dev tools and tested with the below devices : 
+
+* Galaxy tab A Tablet
+* Galaxy a54 phone
+* MSI 1920x1080 monitor
+* Viewsonic 4k monitor
+* Asus Ultrawide monitor
+
+
+| APP        | XS   | S    | M    | L    | XL   | Pass/Fail |
+|------------|------|------|------|------|------|-----------|
+| Cart       | Pass | Pass | Pass | Pass | Pass | Pass      |
+| Checkout   | Pass | Pass | Pass | Pass | Pass | Pass      |
+| Home       | Pass | Pass | Pass | Pass | Pass | Pass      |
+| Products   | Pass | Pass | Pass | Pass | Pass | Pass      |
+| Profiles   | Pass | Pass | Pass | Pass | Pass | Pass      |
+

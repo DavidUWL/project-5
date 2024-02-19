@@ -57,7 +57,8 @@
                     </div>
                     <div class="col-11 text-end text-decoration-underline fw-bolder">
                         {% if item.product.discount %}
-                        <p class="my-0">€{{ item.product.calculate_discount_price | calculate_subtotal:item.quantity |intcomma }}
+                        <p class="my-0">
+                            €{{ item.product.calculate_discount_price | calculate_subtotal:item.quantity |intcomma }}
                         </p>
                         {% else %}
                         <p class="my-0">€{{ item.product.price | calculate_subtotal:item.quantity |intcomma }}</p>
@@ -124,10 +125,11 @@
                         </div>
                         <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     </fieldset>
-                        <a href="{% url 'view_cart' %}" class="btn btn-dark rounded-0 align-items-center logo-font text-white text-decoration-none">
-                            <span><small><i class="fa-solid fa-basket-shopping"></i></small></span>
-                            Confirm Order
-                        </a>
+                    <button id="submit-button"
+                        class="btn btn-dark rounded-0 align-items-center logo-font">
+                        <span><small><i class="fa-solid fa-basket-shopping"></i></small></span>
+                        Confirm Order
+                    </button>
                     <p class="fw-1 text-danger my-1 fw-bolder">Your card will be charged :
                         €{{ grand_total|floatformat:2}}</p>
                 </form>

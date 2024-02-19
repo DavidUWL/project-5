@@ -5,23 +5,52 @@ La Selle is a fictitious bicycle saddle E-Commerce site created using the Django
 ### View the site - [La Selle](https://la-selle-45cacae9f212.herokuapp.com/)
 <br>
 
-## Table of Contents
-
-* [User Experience (UX)](#user-experience-ux)
-  * [Initial Discussion](#initial-discussion)
-  * [User Stories](#user-stories)
-* [Design](#design)
-  * [Wireframes](#wireframes)
-  * [Database Schema](#database-schema)
-  * [Features](#features)
-* [Technologies Used](#technologies-used)
-  * [Languages Used](#languages-used)
-  * [Libraries & Programs Used](#libraries--programs-used)
-* [Deployment & Local Development](#deployment--local-development)
-* [Testing](#testing)
-* [Credits](#credits)
-* [Media](#media)
-* [Acknowledgments](#acknowledgments)
+ * [Table of Contents](#table-of-contents)
+ * [User Experience (UX)](#user-experience-ux)
+    + [Initial Discussion](#initial-discussion)
+    + [User Stories](#user-stories)
+ * [Design](#design)
+ * [Wireframes](#wireframes)
+ * [Database Schema ](#database-schema)
+ * [Color Palette ](#color-palette)
+ * [Typography ](#typography)
+ * [Features By Page](#features-by-page)
+    + [Home page](#home-page)
+    + [Products](#products)
+    + [Product details](#product-details)
+    + [Cart](#cart)
+    + [Checkout](#checkout)
+    + [Stripe Webhooks](#stripe-webhooks)
+    + [Accounts](#accounts)
+    + [Profiles](#profiles)
+    + [Emails](#emails)
+    + [Defensive Design](#defensive-design)
+    + [Future Implentations](#future-implentations)
+ * [Technologies Used](#technologies-used)
+    + [Languages & Packages Used ](#languages-packages-used)
+ * [Database tools](#database-tools)
+    + [Programs Used](#programs-used)
+ * [Deployment and Local Development](#deployment-and-local-development)
+ * [Testing](#testing)
+ * [marketing ](#marketing)
+    + [Strategic Partnerships:](#strategic-partnerships)
+    + [Community Engagement:](#community-engagement)
+    + [User-Generated Content:](#user-generated-content)
+    + [Interactive Content:](#interactive-content)
+    + [Customer Reviews and Testimonials:](#customer-reviews-and-testimonials)
+    + [Localized Marketing:](#localized-marketing)
+    + [Influencer Marketing:](#influencer-marketing)
+    + [Sustainability and Innovation:](#sustainability-and-innovation)
+    + [Limited Editions and Special Releases:](#limited-editions-and-special-releases)
+    + [Educational Content:](#educational-content)
+    + [B2B Distributor and Supplier Engagement:](#b2b-distributor-and-supplier-engagement)
+    + [Mailing list](#mailing-list)
+    + [Mockup Facebook page](#mockup-facebook-page)
+    + [Marketing synopsis ](#marketing-synopsis)
+ * [credits](#credits)
+    + [Content](#content)
+ * [Media](#media)
+ * [Acknowledgments](#acknowledgments)
 
 ## User Experience (UX)
 ### Initial Discussion
@@ -169,6 +198,14 @@ _Each Page feature section has been formatted as a dropdown for image tidiness, 
   </summary>
 
   ![Search bar](readme_images/features/home/search_bar.png)
+</details>
+
+<details>
+  <summary>
+  Site favicon created using [favicon.io](https://favicon.io/).
+  </summary>
+
+  ![Site Favicon](readme_images/features/favicon/favicon_tab.png)
 </details>
 
 <hr>
@@ -466,19 +503,83 @@ Gmail was used for the deployed site as an SMTP server for sending emails to cus
 * [Site Palette](https://chromewebstore.google.com/detail/site-palette/pekhihjiehdafocefoimckjpbkegknoh?hl=en-GB)
   to create the website colour palette image. 
 
-
-
 ## Deployment and Local Development
 Please refer to [the deployment document](DEPLOYMENT.md) for relevant information on deployment and local development. 
 
+## Testing
+Please refer to the [testing document](TESTING.md) for relevant information on testing.
+
+## marketing 
+Below are a few strategies that would be employed for marketing how the brand could increase customer reach, brand awareness and how customers view the products. 
+
+### Strategic Partnerships:
+* Explore partnerships with cycling events, teams, or influencers. Sponsoring races or collaborating with popular cyclists for events can significantly boost brand visibility.
+
+### Community Engagement:
+* Leverage online forums and communities where cycling enthusiasts gather. Participate in discussions, share valuable content, and engage with potential customers directly.
+
+### User-Generated Content:
+* Encourage the customer base to share their experiences with La Selle products. Create a hashtag for the brand and ask users to use it when posting their cycling adventures, creating a community around the brand.
+
+### Interactive Content:
+* Consider creating interactive content like quizzes or challenges related to cycling and share them on social media. This not only engages the audience but also provides an opportunity for user data collection.
+
+### Customer Reviews and Testimonials:
+* Highlight customer reviews and testimonials on the website and social media platforms. Real experiences from actual users can be powerful in convincing potential customers.
+
+### Localized Marketing:
+* Tailor the marketing campaigns based on local cycling events or trends. Highlighting regional cycling scenes can resonate well with different segments of the target audience.
+
+### Influencer Marketing:
+* Collaborate with cycling influencers who align with the brand values. Their endorsement can be influential, especially if they have a strong and engaged follower base within the target demographic.
+
+### Sustainability and Innovation:
+* Emphasize any sustainability efforts in the product design or manufacturing processes. The cycling community often appreciates environmentally conscious brands. Additionally, highlight any innovative features that set the products apart.
+
+### Limited Editions and Special Releases:
+* Introduce limited edition products or special releases to create a sense of exclusivity and urgency among consumers. This can drive both sales and brand excitement.
+
+### Educational Content:
+* Share educational content about cycling techniques, maintenance, or training tips. Establishing the brand as an authority in the cycling space can enhance credibility.
+
+### B2B Distributor and Supplier Engagement:
+* Implement marketing strategies aimed at distributors and suppliers to increase throughput and market share. Establish mutually beneficial partnerships to expand La Selle's reach within the cycling market.
+
+### Mailing list
+When users first access the shop page, they will be prompted to sign up to the shops mailing list for exclusive updates and offers. They can use their email and phone number, the phone number is optional. These contact details can then be used to provide targeted promotions and offers based on the users purchase data. Users will only be prompted to sign up for their first visit or when they next clear their cookies - there is nothing more annoying than constant popups when browsing a page. 
+
+![Email mailing list signup](readme_images/features/emails/email_mailing_signup.png)
+
+### Mockup Facebook page
+<details>
+  <summary>
+  Mockup Facebook page.
+  </summary>
+  
+  ![Mockup Facebook page](readme_images/marketing_facebook.png)
+</details>
+
+
+
+
+###  Marketing synopsis 
+The La selle consumer base would mainly consist of racing amateurs or hobbyist racing cyclists that could be reached via other brick and mortar shops online shops or cycling blogs. The consumer base would mostly use both facebook and instagram as their social media platforms as these are the most common. 
+Most apropriate content would be interviews or ride alongs with professional cyclists already using the product. Making-of documentaries would also work well due to the prevalent interest in "marginal gains" in cycling and how they are achieved. Product testing in cycling is also highly viewed due to being easily understood. 
+Offers would be best received by email, however advertisements within content promotion would also work as the average cyclists age is slightly higher than other sports demographics. 
+The goal of the business is to drive sales, however a secondary effect of the marketing is to drive brand awareness. 
+A high budget for advertising would be important however this would be more aimed at the organic content creation as opposed to paid advertising. The younger generation of consumers quickly identify paid advertising and is a highly volatile way to market to younger consumers. 
+
 ## credits
 ### Content
-All content for this website was created by me - David Kirby. 
+All non-product related content for this website was created by me - David Kirby. <br>
+Product descriptions were taken from Selle italia's product sales package which is distributed for free use to any bike shop/retailer who sells their products, due to this their images/descriptions are non-copyrighted.
 
 ## Media
-[Istockphoto for the homescreen/background image.](https://www.istockphoto.com/)
+Images used for products taken from Selle Italia's sales package. <br>
+The hero image was taken from [Getty Images](https://www.gettyimages.ie/) as the image is royalty/copyright free. 
 
  
 ## Acknowledgments
-[Derek Mcauley](https://github.com/derekmcauley7) For his guidance as my Code Institute mentor. <br>
-[Kera cudmore](https://github.com/kera-cudmore/readme-examples/blob/main/milestone1-readme.md) For her fantastic README template.
+Richard Ash for his code-block on bootstrap 5 toasts on the CI slack channel. <br>
+[Spencer Barriball](https://github.com/5pence) For his guidance as my Code Institute mentor. <br>
+[Kera cudmore](https://github.com/kera-cudmore/readme-examples/blob/main/milestone1-readme.md) For her fantastic README template. <br>
