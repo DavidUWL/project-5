@@ -416,3 +416,20 @@ Reponsiveness was tested with google dev tools and tested with the below devices
 | Products   | Pass | Pass | Pass | Pass | Pass |
 | Profiles   | Pass | Pass | Pass | Pass | Pass |
 
+
+## Lighthouse Testing
+### Homepage lighthouse
+![Homepage lighthouse](readme_images/features/Lighthouse/lighthouse_home.png) <br>
+### All products lighthouse
+![All products lighthouse](readme_images/features/Lighthouse/all_products_lighthouse.png) <br>
+### Product details Lighthouse
+![Product details Lighthouse](readme_images/features/Lighthouse/product_details_lighthouse.png) <br>
+### Cart lighthouse
+![Cart lighthouse](readme_images/features/Lighthouse/cart_lighthouse.png) <br>
+### Checkout lighthouse
+* Load times for this page will need further testing with AWS bucket, performance score impacted due to serve time from AWS on this page only. <br>
+![Checkout lighthouse](readme_images/features/Lighthouse/checkout_lighthouse.png) <br>
+### Checkout success lighthouse
+![Checkout success lighthouse](readme_images/features/Lighthouse/checkout_success_lighthouse.png) <br>
+### Profile page lighthouse
+![Profile page lighthouse](readme_images/features/Lighthouse/profile_lighthouse.png) <br>
