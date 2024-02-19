@@ -408,11 +408,11 @@ Reponsiveness was tested with google dev tools and tested with the below devices
 * Asus Ultrawide monitor
 
 
-| APP        | XS   | S    | M    | L    | XL   | Pass/Fail |
-|------------|------|------|------|------|------|-----------|
-| Cart       | Pass | Pass | Pass | Pass | Pass | Pass      |
-| Checkout   | Pass | Pass | Pass | Pass | Pass | Pass      |
-| Home       | Pass | Pass | Pass | Pass | Pass | Pass      |
-| Products   | Pass | Pass | Pass | Pass | Pass | Pass      |
-| Profiles   | Pass | Pass | Pass | Pass | Pass | Pass      |
+| APP        | XS   | S    | M    | L    | XL   |
+|------------|------|------|------|------|------|
+| Cart       | Pass | Pass | Pass | Pass | Pass |
+| Checkout   | Pass | Pass | Pass | Pass | Pass |
+| Home       | Pass | Pass | Pass | Pass | Pass |
+| Products   | Pass | Pass | Pass | Pass | Pass |
+| Profiles   | Pass | Pass | Pass | Pass | Pass |
 
