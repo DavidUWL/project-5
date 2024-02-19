@@ -21,28 +21,28 @@
         <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-contend-md-end">
           <div class="sort-select-wrapper w-50">
             <select id="sort-selection" class="custom-select custom-select-sm rounded-0 border">
-              <option value="reset" {% if current_sorting == 'None_None'%}selected{% endif %}>Sort By..</option>
-              <option value="price_asc" {% if current_sorting == 'price_asc'%}selected{% endif %}>Price (low to high)
+              <option value="reset" aria-label="reset" {% if current_sorting == 'None_None'%}selected{% endif %}>Sort By..</option>
+              <option value="price_asc" aria-label="price_asc" {% if current_sorting == 'price_asc'%}selected{% endif %}>Price (low to high)
               </option>
-              <option value="price_desc" {% if current_sorting == 'price_desc'%}selected{% endif %}>Price (high to low)
+              <option value="price_desc" aria-label="price_desc" {% if current_sorting == 'price_desc'%}selected{% endif %}>Price (high to low)
               </option>
-              <option value="rating_asc" {% if current_sorting == 'rating_asc'%}selected{% endif %}>Rating (low to high)
+              <option value="rating_asc" aria-label="rating_asc" {% if current_sorting == 'rating_asc'%}selected{% endif %}>Rating (low to high)
               </option>
-              <option value="rating_desc" {% if current_sorting == 'rating_desc'%}selected{% endif %}>Rating (high to
+              <option value="rating_desc" aria-label="rating_desc" {% if current_sorting == 'rating_desc'%}selected{% endif %}>Rating (high to
                 low)</option>
-              <option value="name_asc" {% if current_sorting == 'name_asc'%}selected{% endif %}>Name (A-Z)</option>
-              <option value="name_desc" {% if current_sorting == 'name_desc'%}selected{% endif %}>Name (Z-A)</option>
-              <option value="category_asc" {% if current_sorting == 'category_asc'%}selected{% endif %}>Category (A-Z)
+              <option value="name_asc" aria-label="name_asc" {% if current_sorting == 'name_asc'%}selected{% endif %}>Name (A-Z)</option>
+              <option value="name_desc" aria-label="name_desc" {% if current_sorting == 'name_desc'%}selected{% endif %}>Name (Z-A)</option>
+              <option value="category_asc" aria-label="category_asc" {% if current_sorting == 'category_asc'%}selected{% endif %}>Category (A-Z)
               </option>
-              <option value="category_desc" {% if current_sorting == 'category_desc'%}selected{% endif %}>Category (Z-A)
+              <option value="category_desc" aria-label="category_desc" {% if current_sorting == 'category_desc'%}selected{% endif %}>Category (Z-A)
               </option>
-              <option value="subcategory_asc" {% if current_sorting == 'subcategory_asc'%}selected{% endif %}>
+              <option value="subcategory_asc" aria-label="subcategory_asc" {% if current_sorting == 'subcategory_asc'%}selected{% endif %}>
                 Subcategory (A-Z)</option>
-              <option value="subcategory_desc" {% if current_sorting == 'subcategory_desc'%}selected{% endif %}>
+              <option value="subcategory_desc" aria-label="subcategory_desc" {% if current_sorting == 'subcategory_desc'%}selected{% endif %}>
                 Subcategory (Z-A)</option>
-              <option value="technology_asc" {% if current_sorting == 'technology_asc'%}selected{% endif %}>Technology
+              <option value="technology_asc" aria-label="technology_asc" {% if current_sorting == 'technology_asc'%}selected{% endif %}>Technology
                 (A-Z)</option>
-              <option value="technology_desc" {% if current_sorting == 'technology_desc'%}selected{% endif %}>Technology
+              <option value="technology_desc" aria-label="technology_desc" {% if current_sorting == 'technology_desc'%}selected{% endif %}>Technology
                 (Z-A)</option>
             </select>
           </div>

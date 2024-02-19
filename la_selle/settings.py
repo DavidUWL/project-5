@@ -14,15 +14,15 @@ load_dotenv(dotenv_path)
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 TESTING = False
 
 if DEBUG:
     ALLOWED_HOSTS = ['8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io']
     CSRF_TRUSTED_ORIGINS = [
-    'https://8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io',
-    'https://*.127.0.0.1'
-]
+        'https://8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io',
+        'https://*.127.0.0.1'
+    ]
 else:
     ALLOWED_HOSTS = ['la-selle-45cacae9f212.herokuapp.com']
     CSRF_TRUSTED_ORIGINS = ['la-selle-45cacae9f212.herokuapp.com']
@@ -212,4 +212,3 @@ else:
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
-    
