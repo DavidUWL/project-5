@@ -1,5 +1,5 @@
 # Project 5 - La Selle 
-![Banner that says "It's not just about food."](therestaurant/static/home/images/README/banner.png)
+![Readme banner - device screens](readme_images/readme_banner.png)
 
 La Selle is a fictitious bicycle saddle E-Commerce site created using the Django Framework and numerous other packages, libraries, modules and external tooling.
 ### View the site - [La Selle](https://la-selle-45cacae9f212.herokuapp.com/)
@@ -11,9 +11,9 @@ La Selle is a fictitious bicycle saddle E-Commerce site created using the Django
     + [User Stories](#user-stories)
  * [Design](#design)
  * [Wireframes](#wireframes)
- * [Database Schema ](#database-schema)
- * [Color Palette ](#color-palette)
- * [Typography ](#typography)
+ * [Database Schema](#database-schema)
+ * [Color Palette](#color-palette)
+ * [Typography](#typography)
  * [Features By Page](#features-by-page)
     + [Home page](#home-page)
     + [Products](#products)
@@ -558,8 +558,6 @@ When users first access the shop page, they will be prompted to sign up to the s
   
   ![Mockup Facebook page](readme_images/marketing_facebook.png)
 </details>
-
-
 
 
 ###  Marketing synopsis 

@@ -1,6 +1,7 @@
 # Full Project Testing 
 
-   * [Validation Testing](#validation-testing)
+ 
+   * [Validation Testing ](#validation-testing)
       + [python](#python)
 - [Manual Testing](#manual-testing)
    * [Base template](#base-template)
@@ -10,7 +11,7 @@
       + [Product details](#product-details)
       + [Review Modal](#review-modal)
    * [Cart](#cart)
-   * [checkout](#checkout)
+   * [Checkout ](#checkout)
       + [Checkout confirmation](#checkout-confirmation)
       + [Stripe Payment](#stripe-payment)
       + [Stripe test-card details](#stripe-test-card-details)
@@ -18,11 +19,21 @@
    * [Profile ](#profile)
       + [Order history modal](#order-history-modal)
       + [Ratings history modal](#ratings-history-modal)
-   * [Custom 404 page](#custom-404-page)
+   * [Custom 404 Page](#custom-404-page)
    * [Bugs](#bugs)
       + [Solved Bugs](#solved-bugs)
       + [known/unresolved bugs](#knownunresolved-bugs)
    * [User story testing](#user-story-testing)
+      + [Browser compatibility](#browser-compatibility)
+   * [Responsiveness](#responsiveness)
+   * [Lighthouse Testing](#lighthouse-testing)
+      + [Homepage lighthouse](#homepage-lighthouse)
+      + [All products lighthouse](#all-products-lighthouse)
+      + [Product details Lighthouse](#product-details-lighthouse)
+      + [Cart lighthouse](#cart-lighthouse)
+      + [Checkout lighthouse](#checkout-lighthouse)
+      + [Checkout success lighthouse](#checkout-success-lighthouse)
+      + [Profile page lighthouse](#profile-page-lighthouse)
 
 
 
