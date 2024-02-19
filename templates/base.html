@@ -85,8 +85,8 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                         <form class="d-flex mx-auto searchbar" role="search" method="get" action="{% url 'products' %}">
-                            <input class="form-control text-center" type="text" name="q" placeholder="Search"
-                                aria-label="Search the site">
+                            <label for="searchInput" class="visually-hidden">Search the site</label>
+                            <input id="searchInput" class="form-control text-center" type="text" name="q" placeholder="Search" aria-label="Search the site">
                             <button class="btn btn-outline-secondary" type="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
