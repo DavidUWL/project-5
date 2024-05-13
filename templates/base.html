@@ -164,8 +164,8 @@
                                     {% if request.user.is_authenticated %}
                                     {% if request.user.is_superuser %}
                                     <li><a class=" dropdown-item"
-                                            href="https://8000-daviduwl-project5-jusbyi2qwcf.ws-eu108.gitpod.io/admin/products/product/add/">Manage
-                                            Products</a></li>
+                                            href="{% url 'admin:products_product_add' %}">
+                                            Manage Products</a></li>
                                     {% endif %}
                                     <li><a class="dropdown-item" href="{% url 'view_profile' %}">My profile</a></li>
                                     <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
